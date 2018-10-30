@@ -31,11 +31,11 @@
             <br>
             <button type="submit">Registruoti</button>
             </div>
-
-            <div class="container" style="background-color:#f1f1f1">
-              <button onclick="javascript:history.back()" type="button">Grįžti į pradžią</button>
-            </div>
         </form>   
+                <br>
+        <div class="container" style="background-color:#f1f1f1">
+            <button onclick="javascript:history.back()">Grįžti</button>
+        </div>
     </center>
 </body>
 
