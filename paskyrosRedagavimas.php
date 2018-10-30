@@ -3,6 +3,8 @@
         <title>Bibliotekos informacinė sistema</title>
     </head>
     <body>
+        <a href="atsijungimas.php">Atsijungti</a><br/>
+        <a href="/is_biblioteka/turimiTaskai.php">Turimi taškai</a><br/>
         <center>
         <h1>Bibliotekos informacinė sistema</h1>
         </center>

@@ -7,10 +7,10 @@
  */
 
 /**
- * Description of sutarciuSarasas
+ * Description of registruotiRengini
  *
  * @author lukkru2
  */
-class sutarciuSarasas {
+class registruotiRengini {
     //put your code here
 }

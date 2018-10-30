@@ -7,10 +7,10 @@
  */
 
 /**
- * Description of rezervacijuSarasas
+ * Description of rezervuotiRenginiai
  *
  * @author lukkru2
  */
-class rezervacijuSarasas {
+class rezervuotiRenginiai {
     //put your code here
 }
