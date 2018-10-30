@@ -1,16 +1,23 @@
-<?php
+<html>
+<head>
+    <title>Bibliotekos informacinė sistema</title>
+</head>
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+<body>
+    <a href="atsijungimas.php">Atsijungti</a><br/>
+    <a href="paskyrosRedagavimas.php">Redaguoti paskyrą</a><br/>
+    <center>
+        <h1>Bibliotekos informacinė sistema</h1>
+        <table border="1" cellpadding="10">
+            <tr align="center">
+                <td>ČIA BUS RODOMAS KNYGŲ SĄRAŠAS IR PAIEŠKA</td>
+            </tr>
+        </table>
+        <br>
+        <div class="container" style="background-color:#f1f1f1">
+            <button onclick="location.href='index.php'" type="button">Grįžti</button>
+        </div>
+    </center>
+</body>
 
-/**
- * Description of knyguSarasas
- *
- * @author lukkru2
- */
-class knyguSarasas {
-    //put your code here
-}
+</html>

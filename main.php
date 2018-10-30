@@ -5,7 +5,7 @@
 
 <body>
     <a href="prisijungimas.php">Prisijungti</a><br/>
-    <a href="paskyrosRedagavimas.php">Registruotis</a><br/>
+    <a href="registracija.php">Registruotis</a><br/>
     <center>
         <h1>Bibliotekos informacinė sistema</h1>
         <table border="1" cellpadding="10">
