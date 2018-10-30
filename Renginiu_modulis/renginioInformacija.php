@@ -4,8 +4,9 @@
 </head>
 
 <body>
-    <a href="atsijungimas.php">Atsijungti</a><br/>
-    <a href="paskyrosRedagavimas.php">Redaguoti paskyrą</a><br/>
+    <a href="/is_biblioteka/atsijungimas.php">Atsijungti</a><br/>
+    <a href="/is_biblioteka/paskyrosRedagavimas.php">Redaguoti paskyrą</a><br/>
+    <a href="/is_biblioteka/turimiTaskai.php">Turimi taškai</a><br/>
     <center>
         <h1>Bibliotekos informacinė sistema</h1>
         <font size="5">RENGINIO PAVADINIMAS, data, laikas</font>

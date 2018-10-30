@@ -15,7 +15,7 @@
                 <td><a href="ataskaituSarasas.php">Ataskaitų sąrašas</a></td>
                 <td>Darbuotojams:<br/><a href="skoluSarasas.php">Skolų sąrašas</a><br/>
                     Klientams:<br/><a href="skolosLangas.php">Skolos langas</a></td>
-                <td>Klientams:<br/><a href="rezervacijuSarasas.php">Knygų rezervacijų sąrašas</a></td>
+                <td>Klientams:<br/><a href="rezervuotuKnyguSarasas.php">Knygų rezervacijų sąrašas</a></td>
                 <td>Klientams:<br/><a href="lengvatuSarasas.php">Lengvatų sąrašas</a></td>
                 <td>Darbuotojams:<br/><a href="sutarciuSarasas.php">Sutarčių sąrašas</a></td>
                 <td>Darbuotojams:<br/><a href="Darbuotoju_modulis/darbuotojuSarasas.php">Darbuotojų sąrašas</a></td>
