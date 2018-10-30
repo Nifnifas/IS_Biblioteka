@@ -8,7 +8,7 @@
         <font size="4">Renginio registravimas</font>
         <p></p>
     
-    <form action="index.php">
+    <form action="javascript:history.back()">
   <div class="container">
     <label for="title"><b>Pavadinimas</b></label>
     <input type="title"  name="title">
@@ -44,7 +44,7 @@
    
 
   <div class="container" style="background-color:#f1f1f1">
-    <button onclick="location.href='main.php'" type="button">Grįžti</button>
+    <button onclick="javascript:history.back()">Grįžti į pradžią</button>
   </div>
 </form>
 </center>

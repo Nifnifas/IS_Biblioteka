@@ -12,7 +12,7 @@
             <tr align="center">
                 <td><a href="Knygu_modulis/knyguSarasas.php">Knygų sąrašas</a></td>
                 <td><a href="ataskaituSarasas.php">Ataskaitų sąrašas</a></td>
-                <td><a href="renginiuKalendorius.php">Renginių kalendorius</a></td>
+                <td><a href="Renginiu_modulis/renginiuKalendorius.php">Renginių kalendorius</a></td>
             </tr>
         </table>
     </center>

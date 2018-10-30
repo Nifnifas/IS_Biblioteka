@@ -49,7 +49,7 @@
         
         <br>
         <div class="container" style="background-color:#f1f1f1">
-            <button onclick="location.href='index.php'" type="button">Grįžti</button>
+            <button onclick="javascript:history.back()">Grįžti</button>
         </div>
     </center>
 </body>

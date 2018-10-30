@@ -19,7 +19,7 @@
                 <td>Klientams:<br/><a href="lengvatuSarasas.php">Lengvatų sąrašas</a></td>
                 <td>Darbuotojams:<br/><a href="sutarciuSarasas.php">Sutarčių sąrašas</a></td>
                 <td>Darbuotojams:<br/><a href="Darbuotoju_modulis/darbuotojuSarasas.php">Darbuotojų sąrašas</a></td>
-                <td><a href="renginiuKalendorius.php">Renginių kalendorius</a></td>
+                <td><a href="Renginiu_modulis/renginiuKalendorius.php">Renginių kalendorius</a></td>
             </tr>
         </table>
     </center>
