@@ -11,7 +11,7 @@
         <h1>Bibliotekos informacinė sistema</h1>
         <table border="1" cellpadding="10">
             <tr align="center">
-                <td><a href="knyguSarasas.php">Knygų sąrašas</a></td>
+                <td><a href="Knygu_modulis/knyguSarasas.php">Knygų sąrašas</a></td>
                 <td><a href="ataskaituSarasas.php">Ataskaitų sąrašas</a></td>
                 <td>Darbuotojams:<br/><a href="skoluSarasas.php">Skolų sąrašas</a><br/>
                     Klientams:<br/><a href="skolosLangas.php">Skolos langas</a></td>
