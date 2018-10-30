@@ -15,6 +15,10 @@
 	</table>
 	
 	<input type="submit" value="Įrašyti"/>
+        <br>
+        <div class="container" style="background-color:#f1f1f1">
+            <button onclick="javascript:history.back()">Grįžti</button>
+        </div>
 </center>
 
 </body>

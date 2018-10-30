@@ -32,6 +32,9 @@ ID: <input type="text"/> <input type="button" value="X"/><br/>
 ID: <input type="text"/> <input type="button" value="X"/><br/>
 
 <input type="submit" value="Įrašyti"/>
-
+<br>
+        <div class="container" style="background-color:#f1f1f1">
+            <button onclick="javascript:history.back()">Grįžti</button>
+        </div>
 </body>
 </html>
