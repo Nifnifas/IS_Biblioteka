@@ -15,7 +15,7 @@
             </tr>
         </table>
         <br>
-         <form action="javascript:history.back()">
+         <form action="">
             <div class="container">
               <label for="id"><b>Darbuotojo id</b></label>
               <input type="id"  name="id">
