@@ -23,8 +23,14 @@
               <button type="submit">Ieškoti</button>
             </div>
         </form>   
+                <?php include'darbuotojai.php'?>
+                <div align="center" class="container">
+                    <form action='premijosForma.php'>
+                        <button type="submit">Skirti premiją</button>
+                    </form>
+                </div>
                 <br>
-        <div class="container" style="background-color:#f1f1f1">
+        <div align="center" class="container" style="background-color:#f1f1f1">
             <button onclick="javascript:history.back()">Grįžti</button>
         </div>
     </center>

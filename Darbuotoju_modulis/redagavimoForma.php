@@ -11,11 +11,11 @@
         <h1>Bibliotekos informacinė sistema</h1>
         <table border="1" cellpadding="10">
             <tr align="center">
-                <td>Čia bus galima pridėti naują darbuotoją prie sistemos</td>
+                <td>Čia bus galima redaguoti darbuotojo informaciją</td>
             </tr>
         </table>
         <br>
-        <form action="registracijaDarbuotojo.php">
+        <form action="redagavimasDarbuotojo.php">
             <div class="container">
             <label for="name"><b>Vardas</b></label>
             <input type="name"  name="name">
@@ -29,7 +29,7 @@
             <label for="psw"><b>Slaptažodis</b></label>
             <input type="password"  name="psw">
             <br>
-            <button type="submit">Registruoti</button>
+            <button type="submit">Redaguoti</button>
             </div>
         </form>   
                 <br>

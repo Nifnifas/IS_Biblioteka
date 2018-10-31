@@ -9,23 +9,24 @@
     <a href="/is_biblioteka/turimiTaskai.php">Turimi taškai</a><br/>
     <center>
         <h1>Bibliotekos informacinė sistema</h1>
-        <h2>Skolų sąrašas</h2>
         <table border="1" cellpadding="10">
-            <tr>
-                <td>Skolininkas</td><td>Skola</td><td>prasiskolinimo data</td><td>procentalumas</td>
-            </tr>
-            <tr>
-            	<td>Petras</td><td>15,26</td><td>2008-10-31</td><td>0,05</td>
-            </tr>
-            <tr>
-            	<td>Antanas</td><td>15000</td><td>2018-05-13</td><td>0,18</td>
+            <tr align="center">
+                <td>Čia bus galima suteikti darbuotojui atostogas</td>
             </tr>
         </table>
         <br>
+        <form action="suteiktiAtostogas.php">
+            <div class="container">
+            <label for="dienos"><b>Dienu sk. </b></label>
+            <input type="dienos"  name="dienos">
+            <br>
+            <button type="submit">Suteikti</button>
+            </div>
+        </form>   
+                <br>
         <div class="container" style="background-color:#f1f1f1">
-            <button onclick="javascript:history.back()">Grįžti į pradžią</button>
+            <button onclick="javascript:history.back()">Grįžti</button>
         </div>
-        </form>     
     </center>
 </body>
 

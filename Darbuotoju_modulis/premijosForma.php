@@ -11,26 +11,20 @@
         <h1>Bibliotekos informacinė sistema</h1>
         <table border="1" cellpadding="10">
             <tr align="center">
-                <td>Čia bus galima skirti atlyginimą pagal darbuotojo id</td>
+                <td>Čia bus galima skirti darbuotojui premiją</td>
             </tr>
         </table>
         <br>
-        <form action="">
+        <form action="skirtiPremija.php">
             <div class="container">
-              <label for="id"><b>Darbuotojo id</b></label>
-              <input type="id"  name="id">
-              <br>
-              <button type="submit">Ieškoti</button>
+            <label for="dydis"><b>Premijos dydis</b></label>
+            <input type="dydis"  name="dydis">
+            <br>
+            <button type="submit">Skirti premiją</button>
             </div>
-        </form>
-<?php include'darbuotojai.php'?>
-                <div align="center" class="container">
-                    <form action='atlyginimoForma.php'>
-                        <button type="submit">Skirti atlyginimą</button>
-                    </form>
-                </div>
+        </form>   
                 <br>
-        <div align="center" class="container" style="background-color:#f1f1f1">
+        <div class="container" style="background-color:#f1f1f1">
             <button onclick="javascript:history.back()">Grįžti</button>
         </div>
     </center>

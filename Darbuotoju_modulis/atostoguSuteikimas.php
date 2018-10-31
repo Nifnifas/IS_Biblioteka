@@ -22,9 +22,15 @@
               <br>
               <button type="submit">Ieškoti</button>
             </div>
-        </form>   
+        </form>
+        <?php include'darbuotojai.php'?>
+                <div align="center" class="container">
+                    <form action='atostoguForma.php'>
+                        <button type="submit">Suteikti atostogas</button>
+                    </form>
+                </div>
                 <br>
-        <div class="container" style="background-color:#f1f1f1">
+        <div align ="center" class="container" style="background-color:#f1f1f1">
             <button onclick="javascript:history.back()">Grįžti</button>
         </div>
     </center>
