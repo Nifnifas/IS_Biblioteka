@@ -9,9 +9,16 @@
     <a href="/is_biblioteka/turimiTaskai.php">Turimi taškai</a><br/>
     <center>
         <h1>Bibliotekos informacinė sistema</h1>
+        <h2>Rezervacijų sąrašas</h2>
         <table border="1" cellpadding="10">
-            <tr align="center">
-                <td>Čia bus galima klientui matyti rezervuotų knygų sąrašą</td>
+            <tr>
+                <td>NR</td><td>Kūrinys</td><td>prioritetas</td><td>rezervavimo data</td><td>Atšaukti</td>
+            </tr>
+            <tr>
+                <td>1</td><td>Balta Drobulė</td><td>13</td><td>2017-01-16</td><td><button onclick="location.href='Sutarciu_modulis/sutarciuRedagavimasIrRegistracija.php'" type="button">Atšaukti</button></td>
+            </tr>
+            <tr>
+                <td>2</td><td>Kiniškas Biliardas</td><td>1</td><td>2018-08-08</td><td><button onclick="location.href='Sutarciu_modulis/sutarciuRedagavimasIrRegistracija.php'" type="button">Atšaukti</button></td>
             </tr>
         </table>
         <br>

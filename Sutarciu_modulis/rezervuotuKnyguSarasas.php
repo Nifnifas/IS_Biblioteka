@@ -9,16 +9,16 @@
     <a href="/is_biblioteka/turimiTaskai.php">Turimi taškai</a><br/>
     <center>
         <h1>Bibliotekos informacinė sistema</h1>
-        <h2>Skolų sąrašas</h2>
+        <h2>Rezervacijų sąrašas</h2>
         <table border="1" cellpadding="10">
             <tr>
-                <td>Skolininkas</td><td>Skola</td><td>prasiskolinimo data</td><td>procentalumas</td>
+                <td>NR</td><td>Kūrinys</td><td>prioritetas</td><td>rezervavimo data</td><td>Atšaukti</td>
             </tr>
             <tr>
-            	<td>Petras</td><td>15,26</td><td>2008-10-31</td><td>0,05</td>
+                <td>1</td><td>Balta Drobulė</td><td>13</td><td>2017-01-16</td><td><button onclick="location.href='sutarciuRedagavimasIrRegistracija.php'" type="button">Atšaukti</button></td>
             </tr>
             <tr>
-            	<td>Antanas</td><td>15000</td><td>2018-05-13</td><td>0,18</td>
+                <td>2</td><td>Kiniškas Biliardas</td><td>1</td><td>2018-08-08</td><td><button onclick="location.href='sutarciuRedagavimasIrRegistracija.php'" type="button">Atšaukti</button></td>
             </tr>
         </table>
         <br>

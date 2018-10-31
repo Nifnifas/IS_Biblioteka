@@ -12,13 +12,14 @@
         <table border="1" cellpadding="10">
             <tr align="center">
                 <td><a href="Knygu_modulis/knyguSarasas.php">Knygų sąrašas</a></td>
+                <td>Klientams:<br/><a href="Sutarciu_modulis/pasiimtuKnyguSarasas.php">Paimtų knygų sąrašas</a></td>
                 <td><a href="ataskaituSarasas.php">Ataskaitų sąrašas</a></td>
-                <td>Darbuotojams:<br/><a href="skoluSarasas.php">Skolų sąrašas</a><br/>
-                    Klientams:<br/><a href="skolosLangas.php">Skolos langas</a></td>
-                <td>Klientams:<br/><a href="rezervuotuKnyguSarasas.php">Knygų rezervacijų sąrašas</a></td>
+                <td>Darbuotojams:<br/><a href="Sutarciu_modulis/skoluSarasas.php">Skolų sąrašas</a><br/>
+                    Klientams:<br/><a href="Sutarciu_modulis/skolosLangas.php">Skolos langas</a></td>
+                <td>Klientams:<br/><a href="Sutarciu_modulis/rezervuotuKnyguSarasas.php">Knygų rezervacijų sąrašas</a></td>
                 <td>Klientams:<br/><a href="lengvatuSarasas.php">Lengvatų sąrašas</a></td>
-                <td>Darbuotojams:<br/><a href="sutarciuSarasas.php">Sutarčių sąrašas</a></td>
-                <td>Darbuotojams:<br/><a href="Darbuotoju_modulis/darbuotojuSarasas.php">Darbuotojų sąrašas</a></td>
+                <td>Darbuotojams:<br/><a href="Sutarciu_modulis/sutarciuSarasas.php">Sutarčių sąrašas</a></td>
+                <td>Direktoriui:<br/><a href="Darbuotoju_modulis/darbuotojuSarasas.php">Darbuotojų sąrašas</a></td>
                 <td><a href="Renginiu_modulis/renginiuKalendorius.php">Renginių kalendorius</a></td>
             </tr>
         </table>

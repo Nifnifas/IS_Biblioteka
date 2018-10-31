@@ -21,6 +21,7 @@ Darbuotojams:
 </center>
 <hr/>
 Klientams: <input type="button" value="Pažymėti"/>
+<input type="button" value="Rezervuoti">
 <hr/>
 Darbuotojams:<br/><br/>
 Egzemplioriai:<br/>

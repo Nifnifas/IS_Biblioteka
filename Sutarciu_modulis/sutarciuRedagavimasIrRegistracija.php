@@ -26,7 +26,7 @@
             Kūriniai<br>
             <input type="text">
         </fieldset>
-        <button onclick="location.href='Sutarciu_modulis/sutarciuSarasas.php'" type="button">Pateikti</button>
+        <button onclick="location.href='sutarciuSarasas.php'" type="button">Pateikti</button>
     </form>
         <br>
     <div class="container" style="background-color:#f1f1f1">
