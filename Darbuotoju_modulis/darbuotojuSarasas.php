@@ -21,7 +21,7 @@
         </table>
         <br>
         <div class="container" style="background-color:#f1f1f1">
-            <button onclick="javascript:history.back(-1)">Grįžti į pradžią</button>
+            <a href="/is_biblioteka/index.php">Grįžti</a><br/>
         </div>
     </center>
 </body>
