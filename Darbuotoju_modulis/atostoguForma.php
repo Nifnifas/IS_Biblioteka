@@ -17,10 +17,16 @@
         <br>
         <form action="suteiktiAtostogas.php">
             <div class="container">
-            <label for="dienos"><b>Dienu sk. </b></label>
-            <input type="dienos"  name="dienos">
+            <label for="id"><b>Darbuotojo ID</b></label>
+            <input type="id"  name="id" value="<?php echo $_POST['user_id']?>">
             <br>
-            <button type="submit">Suteikti</button>
+            <label for="atostogos"><b>Sukaupta atostogų: </b></label>
+            <input type="atostogos"  name="atostogos">
+            <br>
+            <label for="kiekis"><b>Išleidžiamų atostogų dienų kiekis </b></label>
+            <input type="kiekis" name="kiekis">
+            <br>
+            <button type="submit">Skirti atostogas</button>
             </div>
         </form>   
                 <br>

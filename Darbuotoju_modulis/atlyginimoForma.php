@@ -17,14 +17,20 @@
         <br>
         <form action="skirtiAtlyginima.php">
             <div class="container">
-            <label for="valandos"><b>Valandu sk. </b></label>
-            <input type="valandos"  name="valandos">
+            <label for="id"><b>Darbuotojo ID</b></label>
+            <input type="id"  name="id" value="<?php echo $_POST['user_id']?>">
             <br>
             <label for="tarifas"><b>Tarifas</b></label>
             <input type="tarifas"  name="tarifas">
             <br>
-            <label for="psd"><b>PSD</b></label>
-            <input type="psd" name="psd">
+            <label for="valandos"><b>Valandu sk. </b></label>
+            <input type="valandos" name="valandos">
+            <br>
+            <label for="mokesciai"><b>Mokesciai</b></label>
+            <input type="mokesciai" name="mokesciai">
+            <br>
+            <label for="premija"><b>Premija</b></label>
+            <input type="premija" name="premija">
             <br>
             <button type="submit">Išmokėti</button>
             </div>
