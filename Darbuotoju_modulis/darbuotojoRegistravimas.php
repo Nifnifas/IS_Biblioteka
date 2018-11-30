@@ -38,7 +38,7 @@
             <label for="data"><b>Įdarbinimo data</b></label>
             <input type="date" id="data" name="data" class="textbox date textbox-70">
             <br>
-            
+            <br>
             <button type="submit">Registruoti</button>
             </div>
         </form>   
