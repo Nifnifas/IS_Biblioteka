@@ -57,7 +57,6 @@
     }
 
     mysqli_close($conn);
-    //header("Location:articles.php");exit;
 ?>
 
     </center>

@@ -19,19 +19,21 @@
         <?php
             include("../nustatymai.php");
             $db=mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
-            $query = "SELECT id, vardas, pavarde, Tel_nr "
+            $query = "SELECT id, vardas, pavarde, tel_nr, adresas, isidarbinimo_data, asmens_kodas, el_pastas, sukaupta_atostogu, statusas "
                     . "FROM " . TBL_DARBUOTOJAS . " ORDER BY id ASC";
             $result = mysqli_query($db, $query);
             if (!$result || (mysqli_num_rows($result) < 1)){  
 			{echo "Klaida skaitant lentelę `darbuotojas`"; exit;}
             }else{
                 echo "<table>";
-                echo "<tr><td>ID</td><td>Vardas</td><td>Pavardė</td><td>Telefonas</td><td></td></tr>";
+                echo "<tr><td>ID</td><td>Vardas</td><td>Pavardė</td><td>Asmens kodas</td><td></td></tr>";
                 while($row = $result->fetch_assoc()) {
                     /*echo "<tr><td>" . $row["id"]. "</td><td>" . $row["vardas"]. "</td><td>" . $row["pavarde"]. "</td><td>" . $row["Tel_nr"] 
                             . "</td><td>" . "<a href='atlyginimoForma.php?editid='>Atlyginimas</a>" . "</td><td>" . "<a href='premijosForma.php'>Premija</a>" 
                             . "</td><td>" . "<a href='atostoguForma.php'>Atostogos</a>" . "</td></tr>";*/
-                    echo "<tr><td>" . $row["id"]. "</td><td>" . $row["vardas"]. "</td><td>" . $row["pavarde"]. "</td><td>" . $row["Tel_nr"] . "</td><td>" 
+                    echo "<tr><td>" . $row["id"]. "</td><td>" . $row["vardas"]. "</td><td>" . $row["pavarde"]. "</td><td>" . $row["asmens_kodas"] . "</td><td>" . $row["adresas"] . "</td><td>"
+                            . $row["tel_nr"] . "</td><td>" . $row["el_pastas"] . "</td><td>" . $row["isidarbinimo_data"] . "</td><td>"
+                            . $row["sukaupta_atostogu"] . "</td><td>" . $row["statusas"] . "</td><td>"
                             . "<form action=\"atlyginimoForma.php\" method=\"post\"><input type=\"submit\" value =\"Atlyginimas\"/><input type=\"hidden\" name=\"user_id\" value=\"$row[id]\">"   
                             . "</form></td><td>" . "<form action=\"atostoguForma.php\" method=\"post\"><input type=\"submit\" value =\"Atostogos\"/><input type=\"hidden\" name=\"user_id\" value=\"$row[id]\">"
                             . "</form></td><td>" . "<form action=\"redagavimoForma.php\" method=\"post\"><input type=\"submit\" value =\"Redaguoti\"/><input type=\"hidden\" name=\"user_id\" value=\"$row[id]\">" 
