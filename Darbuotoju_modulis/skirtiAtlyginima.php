@@ -20,6 +20,7 @@
         $ismokamas = $_POST['toPay'];
         $apskaiciuotas = $_POST['total'];
         $premija = $_POST['premija'];
+        $koef = 0.083 * $valandu_sk / 8;
 
         // Create connection
         $conn = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
@@ -49,6 +50,7 @@
                                         '$fk_id'
 
             )";
+            
 
     if (mysqli_query($conn, $sql)) {
         echo "<table border=\"1\" cellpadding=\"10\"><tr align=\"center\"><td>Darbuotojas gavo algalapį sėkmingai!</td></tr></table>";
@@ -58,7 +60,11 @@
     }
 
     mysqli_close($conn);
-    ?>         
+    ?>      
+    <?php
+        include("atnaujintiAtostogas.php");
+    ?>
+
     </center>
 </body>
 

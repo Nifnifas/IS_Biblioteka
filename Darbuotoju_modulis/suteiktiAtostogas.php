@@ -16,6 +16,8 @@
         $kiekis = $_POST['kiekis'];
         $sukaupta_atostogu = $_POST['atostogos'];
         $likutis = $sukaupta_atostogu - $kiekis;
+        $today = date("Y-m-d");
+        $dataIki = date('Y-m-d', strtotime($today . " + $kiekis days"));
 
         // Create connection
         $conn = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
@@ -23,17 +25,20 @@
         if (!$conn) {
             die("Klaida: " . mysqli_connect_error());
         }
-
-        $sql = "UPDATE " . TBL_DARBUOTOJAS . " SET `sukaupta_atostogu`= '$likutis', `statusas`= 'Atostogauja'"
+        if (($likutis >= 0) && ($kiekis > 0)){
+            $sql = "UPDATE " . TBL_DARBUOTOJAS . " SET `sukaupta_atostogu`= '$likutis', `statusas`= 'Atostogauja', `statusas_iki`= '$dataIki'"
                 . " WHERE `id` = '$id'";
-
-        if(mysqli_query($conn, $sql)){
-            echo "<table border=\"1\" cellpadding=\"10\"><tr align=\"center\"><td>Darbuotojas sėkmingai išleistas atostogų!</td></tr></table>";
-            header( "refresh:1;url=darbuotojuSarasas.php");
+            if(mysqli_query($conn, $sql)){
+                echo "<table border=\"1\" cellpadding=\"10\"><tr align=\"center\"><td>Darbuotojas sėkmingai išleistas atostogų!</td></tr></table>";
+                header( "refresh:1;url=darbuotojuSarasas.php");
+            } else{
+                echo "Klaida: $sql. " . mysqli_error($conn);
+                header( "refresh:2;url=darbuotojuSarasas.php");
+            }
         } else{
-            echo "Klaida: $sql. " . mysqli_error($conn);
+            echo "Klaida: Blogai įvestas dienų skaičius!";
+            header( "refresh:2;url=darbuotojuSarasas.php");
         }
-
         mysqli_close($conn);
     ?>       
     </center>
