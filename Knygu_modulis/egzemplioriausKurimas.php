@@ -14,7 +14,7 @@ if (!isset($req_id) || !isset($req_kodas)){
 $p_id = mysqli_real_escape_string($db, $req_id);
 $p_kodas = mysqli_real_escape_string($db, $req_kodas);
 
-$query = "INSERT INTO egzempliorius VALUES (null, '$p_kodas', CURRENT_DATE(), $p_id)"; // pakeisti lenteles struktura
+$query = "INSERT INTO egzempliorius VALUES (null, '$p_kodas', $p_id)";
 $result = mysqli_query($db, $query);
 
 header("Location: knyguSarasas.php");
