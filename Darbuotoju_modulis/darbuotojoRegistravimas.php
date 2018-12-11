@@ -15,19 +15,29 @@
             </tr>
         </table>
         <br>
-        <form action="registracijaDarbuotojo.php">
+        <form action="registracijaDarbuotojo.php" method="post">
             <div class="container">
-            <label for="name"><b>Vardas</b></label>
-            <input type="name"  name="name">
+            <label for="vardas"><b>Vardas</b></label>
+            <input type="vardas"  name="vardas">
             <br>
-            <label for="surname"><b>Pavardė</b></label>
-            <input type="surname"  name="surname">
+            <label for="pavarde"><b>Pavardė</b></label>
+            <input type="pavarde"  name="pavarde">
             <br>
-            <label for="email"><b>El. paštas</b></label>
-            <input type="email" name="email">
+            <label for="asmens_kodas"><b>Asmens kodas</b></label>
+            <input type="asmens_kodas" name="asmens_kodas">
             <br>
-            <label for="psw"><b>Slaptažodis</b></label>
-            <input type="password"  name="psw">
+            <label for="tel_nr"><b>Telefono nr.</b></label>
+            <input type="tel_nr" name="tel_nr">
+            <br>
+            <label for="adresas"><b>Adresas</b></label>
+            <input type="adresas" name="adresas">
+            <br>
+            <label for="el_pastas"><b>El. paštas</b></label>
+            <input type="el_pastas" name="el_pastas">
+            <br>
+            <label for="data"><b>Įdarbinimo data</b></label>
+            <input type="date" id="data" name="data" class="textbox date textbox-70">
+            <br>
             <br>
             <button type="submit">Registruoti</button>
             </div>
