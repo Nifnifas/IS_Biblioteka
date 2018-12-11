@@ -3,7 +3,7 @@ session_start();
 include("../nustatymai.php");
 
 // tik klientams
-$user_id = 1; // prisijungus, cia turetu buti user id (jeigu klientas)
+$user_id = 1; // prisijungus, cia turetu buti user id
 
 $db = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
 
