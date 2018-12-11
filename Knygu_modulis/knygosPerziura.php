@@ -211,11 +211,10 @@ Vertinti:
 <br/>
 
 
-<input type="button" class="btn btn-sm" value="Rezervuoti">
-<!-- 
-sutarciu modulis:
-	rezeravimas 
--->
+<form action="../Sutarciu_modulis/Procesai/rezervuoti.php" method="POST">
+<?php echo "<input type='hidden' name='book' value='".$p_id."'/>"; ?>
+<button type="submit" name="register-submit" class="btn btn-sm">Rezervuoti</button>
+</form>
 
 
 <hr/>
