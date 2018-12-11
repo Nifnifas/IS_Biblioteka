@@ -127,15 +127,19 @@ $(function(){
 			alert( "Įvyko klaida" );
 		})
 	});
-	/*
-	$("#add-copy").click(function(){
-		$.post( "egzemplioriausKurimas.php", { id: {$p_id} }, function(data) {
-			alert(data);
-			if (data == 0){
-				alert( "Knyga pašalinta" );
-				// redirect
-			}else if (data == -1){
-				alert( "Negalima šalinti, kol yra egzempliorių" );
+	
+	$("#add-copy-btn").click(function(){
+		var code = $(this).parent().prev().prop("value");
+		//alert(code);
+		$.post( "egzemplioriausKurimas.php", { id: {$p_id}, kodas: code }, function(data) {
+			//alert(data);
+			
+			if (data == 1){
+				//alert( "Egzempliorius prid4tas" );
+				
+				$.ajax({type: "POST", url: "knygosPerziura.php", data: { id: {$p_id} }, success: function() {   
+					location.reload();
+				}});
 			}else{
 				alert( "Įvyko klaida" );
 			}
@@ -145,14 +149,19 @@ $(function(){
 		})
 	});
 	
-	$("#del-copy").click(function(){
-		$.post( "egzemplioriausSalinimas.php", { id: {$p_id} }, function(data) {
+	$(".del-copy-btn").click(function(){
+		var copyID = $(this).parent().prev().prop("value");
+		alert(copyID);
+		$.post( "egzemplioriausSalinimas.php", { id: copyID }, function(data) {
 			alert(data);
-			if (data == 0){
-				alert( "Knyga pašalinta" );
-				// redirect
+			if (data == 1){
+				//alert( "Egzempliorius pašalintas" );
+				
+				$.ajax({type: "POST", url: "knygosPerziura.php", data: { id: {$p_id} }, success: function() {   
+					location.reload();
+				}});
 			}else if (data == -1){
-				alert( "Negalima šalinti, kol yra egzempliorių" );
+				alert( "Negalima trinti, kol yra sutarčių" );
 			}else{
 				alert( "Įvyko klaida" );
 			}
@@ -225,10 +234,10 @@ Darbuotojams:<br/>
 	<div class="row">
 		<form action="egzemplioriausKurimas.php" method='post' style='width: 100%;'>
 			<div class="input-group mb-2">
-				<input type="text" name="kodas" class="form-control"/>
 				<?php echo "<input type='hidden' name='id' value='".$p_id."'/>"; ?>
+				<input type="text" name="kodas" class="form-control"/>
 				<div class="input-group-append">
-					<button class="btn btn-success" type="submit">Pridėti</button>
+					<input type="button" id="add-copy-btn" class="btn btn-success" value='Pridėti'/>
 				</div>
 			</div>
 		</form>
@@ -241,7 +250,7 @@ while (($row = mysqli_fetch_assoc($result2)) != null){
 				echo "<input type='text' class='form-control' value=".$row["Kodas"]." disabled />";
 				echo "<input type='hidden' name='id' value='".$row["id"]."'/>";
 				echo "<div class='input-group-append'>";
-					echo "<input class='btn btn-danger' type='submit' value='Šalinti' />";
+					echo "<input class='btn btn-danger del-copy-btn' type='button' value='Šalinti' />";
 				echo "</div>";
 			echo "</div>";
 		echo "</form>";
