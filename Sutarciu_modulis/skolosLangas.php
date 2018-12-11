@@ -1,24 +1,39 @@
-<html>
-<head>
-    <title>Bibliotekos informacinė sistema</title>
-</head>
+<?php
+    require('./../Procesai/dbConnect.php');
+    require('./../header.php');
 
-<body>
-    <a href="/is_biblioteka/atsijungimas.php">Atsijungti</a><br/>
-    <a href="/is_biblioteka/paskyrosRedagavimas.php">Redaguoti paskyrą</a><br/>
-    <a href="/is_biblioteka/turimiTaskai.php">Turimi taškai</a><br/>
+    $userId = 1; //TODO: get zie user id from $_SESSION ! ! !
+    $query = "  SELECT `skola`.`Dydis`, `skola`.`Procentalumas`, DATE_ADD(`sutartis`.`Isdavimo_data`, INTERVAL `sutartis`.`Terminas` DAY) AS `pradzia` 
+                FROM `skola`, `sutartis` 
+                WHERE `skola`.`fk_SutartisID` = `sutartis`.`Sutarties_Nr` AND `sutartis`.`fk_KlientasID` = '$userId' AND `skola`.`Grazinimo_data` IS NULL
+                ORDER BY `skola`.`id` ASC";
+
+    $totalQuery = " SELECT SUM(`skola`.`Dydis`) AS suma 
+                    FROM `skola`, `sutartis` 
+                    WHERE `skola`.`fk_SutartisID` = `sutartis`.`Sutarties_Nr` AND `sutartis`.`fk_KlientasID` = 1 AND `skola`.`Grazinimo_data` IS NULL";
+
+    $result = mysqli_query($connect, $query) or die(mysqli_error($connect));
+    $totalresult = mysqli_query($connect, $totalQuery) or die(mysqli_error($connect));
+?>
     <center>
-        <h1>Bibliotekos informacinė sistema</h1>
+        <h2>Skolos bibliotekai!</h2>
         <table border="1" cellpadding="10">
-            <tr align="center">
-                <td>Skola bibliotekai</td><td>15,26</td>
-            </tr>
+            <tr align="center"><th>Įsiskolinimo data</th><th>Skolos dydis</th><th>Procentalumas</th></tr>
+                <?php while ($row = $result->fetch_assoc()){
+                echo '<tr><td>'.$row['pradzia'].'</td><td>'.$row['Dydis'].'</td><td>'.$row['Procentalumas'].'</td></tr>';
+            } ?>
         </table>
+        <?php
+        $total = mysqli_fetch_row($totalresult);
+        echo '<h4>Pilna skolos suma: '.$total[0].' Eur</h4>';
+
+        ?>
         <br>
         <div class="container" style="background-color:#f1f1f1">
-            <button onclick="javascript:history.back()">Grįžti į pradžią</button>
-        </div>
-        </form>     
+            <form action="../index.php">
+                <button type="submit">Grįžti</button>
+            </form>
+        </div>    
     </center>
 </body>
 

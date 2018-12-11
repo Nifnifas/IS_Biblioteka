@@ -1,3 +1,7 @@
+<?php
+	$bookId = 1; //TODO imesti knygos ant kurios paspaudi ID
+?>
+
 <html>
 <head>
 	<title>Knyga: Hamletas</title>
@@ -21,7 +25,7 @@ Darbuotojams:
 </center>
 <hr/>
 Klientams: <input type="button" value="Pažymėti"/>
-<input type="button" value="Rezervuoti">
+<form action="../Sutarciu_modulis/Procesai/rezervuoti.php?book=<?php echo $bookId; ?>" method="POST"><button type="submit" name="register-submit">Rezervuoti</button></form>
 <hr/>
 Darbuotojams:<br/><br/>
 Egzemplioriai:<br/>

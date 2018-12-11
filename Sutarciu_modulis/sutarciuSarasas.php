@@ -1,30 +1,36 @@
-<html>
-<head>
-    <title>Bibliotekos informacinė sistema</title>
-</head>
+<?php
+    require('./../Procesai/dbConnect.php');
+    require('./../header.php');
 
-<body>
-    <a href="/is_biblioteka/atsijungimas.php">Atsijungti</a><br/>
-    <a href="/is_biblioteka/paskyrosRedagavimas.php">Redaguoti paskyrą</a><br/>
-    <a href="/is_biblioteka/turimiTaskai.php">Turimi taškai</a><br/>
+    $query = "  SELECT `sutartis`.`Sutarties_Nr`, `sutartis`.`Sudarymo_data`, `sutartis`.`Isdavimo_data`, `sutartis`.`Grazinimo_data`, `sutartis`.`Terminas`, `klientas`.`Vardas`, `klientas`.`Pavarde`
+                FROM `sutartis`, `klientas` 
+                WHERE `klientas`.`id` = `sutartis`.`fk_KlientasID`;";
+    $result = mysqli_query($connect, $query) or die(mysqli_error($connect));
+?>
+
     <center>
-        <h1>Bibliotekos informacinė sistema</h1>
         <h2>Sutarčių sąrašas</h2>
-        <a href="sutarciuRedagavimasIrRegistracija.php">Registruoti sutartį</a>
+        <a href="sutarciuRedagavimasIrRegistracija.php">Registruoti sutartį</a><br><br>
         <table border="1" cellpadding="10">
            <tr>
-               <td>Nr</td><td>sudarymo data</td><td>išdavimo data</td><td>Grąžinimo data</td><td>Terminas</td><td>Klientas</td><td>Redaguoti</td><td>Šalinti</td>
+               <th>Nr</th><th>sudarymo data</th><th>išdavimo data</th><th>Grąžinimo data</th><th>Terminas</th><th>Klientas</th><th>Redaguoti</th><th>Šalinti</th>
            </tr>
-           <tr>
-               <td>1</td><td>2018-09-01</td><td>2018-09-13</td><td>2018-10-04</td><td>31</td><td>Petras</td><td><button onclick="location.href='sutarciuRedagavimasIrRegistracija.php'" type="button">Redaguoti</button></td><td><input type="button" value="Šalinti"></td>
-           </tr>
-           <tr>
-               <td>2</td><td>2018-10-04</td><td>2018-10-04</td><td></td><td>31</td><td>Antanas</td><td><button onclick="location.href='sutarciuRedagavimasIrRegistracija.php'" type="button">Redaguoti</button></td><td><input type="button" value="Šalinti"></td>
-           </tr>
+           <?php
+           while ($row = $result->fetch_assoc()) {
+            $id = $row['Sutarties_Nr'];
+             echo '<tr><td>'.$row['Sutarties_Nr'].'</td><td>'.$row['Sudarymo_data'].'</td><td>'.$row['Isdavimo_data'].'</td><td>'.$row['Grazinimo_data'].'</td><td>'.$row['Terminas'].'</td><td>'.$row['Vardas'].' '.$row['Pavarde'].'</td><td><form action="sutarciuRedagavimasIrRegistracija.php?id='.$id.'" method="post">
+                            <button type="submit" name="edit-submit">Redaguoti</button>
+                        </form></td><td><form action="Procesai/salintiSutarti.php?id='.$id.'" method="post">
+                            <button type="submit" name="delete-submit">Šalinti</button>
+                        </form></td></tr>';
+           }
+           ?>
         </table>
         <br>
         <div class="container" style="background-color:#f1f1f1">
-            <button onclick="javascript:history.back()">Grįžti į pradžią</button>
+            <form action="../index.php">
+                <button type="submit">Grįžti</button>
+            </form>
         </div>
         </form>     
     </center>

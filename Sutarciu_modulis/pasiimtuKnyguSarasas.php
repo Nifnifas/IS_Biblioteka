@@ -1,29 +1,32 @@
-<html>
-<head>
-    <title>Bibliotekos informacinė sistema</title>
-</head>
+<?php
+    require('./../Procesai/dbConnect.php');
+    require('./../header.php');
 
-<body>
-    <a href="/is_biblioteka/atsijungimas.php">Atsijungti</a><br/>
-    <a href="/is_biblioteka/paskyrosRedagavimas.php">Redaguoti paskyrą</a><br/>
-    <a href="/is_biblioteka/turimiTaskai.php">Turimi taškai</a><br/>
+    $userId = 1; //TODO: get zie user id from $_SESSION ! ! !
+    $query = "  SELECT `kurinys`.`Pavadinimas`, `kurinys`.`Autorius`, `sutartis`.`Sutarties_Nr`, `sutartis`.`Grazinimo_data`, `egzempliorius`.`id`
+                FROM `kurinys`, `sutartis`, `egzempliorius`, `sutartis_egzempliorius` 
+                WHERE `sutartis`.`Sutarties_Nr` = `sutartis_egzempliorius`.`fk_SutartisID` 
+                  AND `sutartis_egzempliorius`.`fk_EgzemplioriusID` = `egzempliorius`.`id` 
+                  AND `egzempliorius`.`fk_KurinysID` = `kurinys`.`id` 
+                  AND `sutartis`.`fk_KlientasID` = '$userId'";
+    $result = mysqli_query($connect, $query) or die(mysqli_error($connect));
+?>
+
     <center>
-        <h1>Bibliotekos informacinė sistema</h1>
         <h2>Paimtų knygų sąrašas</h2>
         <table border="1" cellpadding="10">
            <tr>
-               <td>Nr</td><td>Autorius</td><td>Pavadinimas</td><td>Grąžinimo data</td>
+               <th>Sutarties nr</th><th>Egzemplioriaus nr</th><th>Autorius</th><th>Kūrinys</th><th>Grąžinimo data</th>
            </tr>
-           <tr>
-               <td>1</td><td>Dantė</td><td>Pragaras</td><td>2018-11-15</td>
-           </tr>
-           <tr>
-               <td>2</td><td>Dantė</td><td>Skaistykla</td><td>2018-10-31</td>
-           </tr>
+           <?php while ($row = $result->fetch_assoc()){
+                echo '<tr><td>'.$row['Sutarties_Nr'].'</td><td>'.$row['id'].'</td><td>'.$row['Autorius'].'</td><td>'.$row['Pavadinimas'].'</td><td>'.$row['Grazinimo_data'].'</td></tr>';
+            } ?>
         </table>
         <br>
         <div class="container" style="background-color:#f1f1f1">
-            <button onclick="javascript:history.back()">Grįžti į pradžią</button>
+            <form action="../index.php">
+                <button type="submit">Grįžti</button>
+            </form>
         </div>
         </form>     
     </center>

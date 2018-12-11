@@ -1,17 +1,19 @@
-<html>
-<head>
-    <title>Bibliotekos informacinė sistema</title>
-</head>
+<?php
+    require "./../header.php";
+    require('./../Procesai/dbConnect.php');
 
-<body>
-    <a href="/is_biblioteka/atsijungimas.php">Atsijungti</a><br/>
-    <a href="/is_biblioteka/paskyrosRedagavimas.php">Redaguoti paskyrą</a><br/>
-    <a href="/is_biblioteka/turimiTaskai.php">Turimi taškai</a><br/>
+    if (isset($_POST)) {
+        if ($_POST['create-submit'] == "add") {
+            $books++;
+        }
+    }
+?>
+
+<main>
     <center>
-        <h1>Bibliotekos informacinė sistema</h1>
         <h2>Sutarčių kūrimo ir redagavimo langas</h2>
     </center>
-    <form>
+    <form action="sutarciuRedagavimasIrRegistracija.php" method="POST">
         <fieldset>
             Klientas<br>
             <input type="text"><br><br>
@@ -24,15 +26,21 @@
         </fieldset>
         <fieldset>
             Kūriniai<br>
-            <input type="text">
+            <?php for ($i=0; $i < $books; $i++) { 
+                echo '<input type="text"><br>';
+            } ?>
+            <button type="submit" name="create-submit" value="add">Papildomas kūrinys</button>
         </fieldset>
-        <button onclick="location.href='sutarciuSarasas.php'" type="button">Pateikti</button>
+        <button type="submit" name="create-submit" value="create">Sukurti</button>
     </form>
         <br>
     <div class="container" style="background-color:#f1f1f1">
-        <button onclick="javascript:history.back()">Grįžti</button>
+        <form action="sutarciuSarasas.php">
+            <button type="submit">Grįžti</button>
+        </form>
     </div>
-    </form>     
+    </form>  
+</main>   
 </body>
 
 </html>

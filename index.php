@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <html>
 <head>
     <title>Bibliotekos informacinė sistema</title>
@@ -9,6 +12,14 @@
     <a href="turimiTaskai.php">Turimi taškai</a><br/>
     <center>
         <h1>Bibliotekos informacinė sistema</h1>
+        <?php
+        if (isset($_SESSION['userId'])) {
+            echo '<p>tu esi prisijungęs lopeta</p>';
+        }
+        else {
+            echo '<p>tu esi atsijungęs kalioše</p>';
+        }
+        ?>
         <table border="1" cellpadding="10">
             <tr align="center">
                 <td><a href="Knygu_modulis/knyguSarasas.php">Knygų sąrašas</a></td>
