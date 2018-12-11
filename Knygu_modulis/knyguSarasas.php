@@ -1,4 +1,5 @@
 <?php
+session_start();
 include("../nustatymai.php");
 
 $db = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
@@ -51,23 +52,27 @@ echo "Autorius: <input type='text' name='aut' value='".$search_aut."'/>";
 
 $result = mysqli_query($db, $query);
 
-echo "<table border='1' cellpadding='5'>";
-echo "<tr><td>Pavadinimas</td><td>Autorius</td></tr>";
-while (($row = mysqli_fetch_assoc($result)) != null){
-	echo "<tr>";
-	
-	echo "<td>";
-		echo $row["Pavadinimas"];
-		echo "<form action='knygosPerziura.php' method='post'>";
-		echo "<input type='hidden' name='id' value='".$row["id"]."'/>";
-		echo "<input type='submit' value='Peržiūrėti'/>";
-		echo "</form>";
-	echo "</td>";
-	echo "<td>".$row["Autorius"]."</td>";
-	
-	echo "</tr>";
+if (mysqli_num_rows($result) > 0){
+	echo "<table border='1' cellpadding='5'>";
+	echo "<tr><td>Pavadinimas</td><td>Autorius</td></tr>";
+	while (($row = mysqli_fetch_assoc($result)) != null){
+		echo "<tr>";
+		
+		echo "<td>";
+			echo $row["Pavadinimas"];
+			echo "<form action='knygosPerziura.php' method='post'>";
+			echo "<input type='hidden' name='id' value='".$row["id"]."'/>";
+			echo "<input type='submit' value='Peržiūrėti'/>";
+			echo "</form>";
+		echo "</td>";
+		echo "<td>".$row["Autorius"]."</td>";
+		
+		echo "</tr>";
+	}
+	echo "</table>";
+}else{
+	echo "Nėra, ką rodyti";
 }
-echo "</table>";
 ?>
         <br>
                 <div class="container" style="background-color:#f1f1f1">

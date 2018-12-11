@@ -2,6 +2,8 @@
 session_start();
 include("../nustatymai.php");
 
+// tik darbuotojams
+
 $db = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
 
 $req_id = $_REQUEST["id"];

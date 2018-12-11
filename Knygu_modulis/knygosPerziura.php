@@ -18,11 +18,15 @@ $query = "SELECT * FROM kurinys WHERE id = $p_id";
 $result = mysqli_query($db, $query);
 $row = mysqli_fetch_assoc($result);
 
-
+// darbuotojams //
 $query2 = "SELECT * FROM egzempliorius WHERE fk_KurinysID = $p_id";
 $result2 = mysqli_query($db, $query2);
+// - //
 
+
+// klientams //
 $vertinimas = 0;
+$marked = false;
 if ($user_id > 0){
 	$query3 = "SELECT * FROM vertinimas WHERE fk_KurinysID = $p_id AND fk_KlientasID = $user_id";
 	$result3 = mysqli_query($db, $query3);
@@ -30,8 +34,14 @@ if ($user_id > 0){
 	if ($row3){ // atrodo, kad veikia
 		$vertinimas = intval($row3["Vertinimas"]);
 	}
+	
+	$query4 = "SELECT * FROM lentynos_zyma WHERE lentynos_zyma.fk_KlientasID = $user_id AND lentynos_zyma.fk_KurinysID = $p_id";
+	$result4 = mysqli_query($db, $query4);
+	if (mysqli_num_rows($result4) > 0){
+		$marked = true;
+	}
 }
-
+// - //
 ?>
 
 <html>
@@ -46,6 +56,7 @@ img.star:hover{
 	</style>
 	<script>
 var num = <?php echo $vertinimas; ?>;
+var mark = <?php echo $marked ? "true" : "false"; ?>;
 function defaultStars(){
 	$("img.star").attr("src","star_gray.png");
 	
@@ -67,20 +78,89 @@ $(function(){
 		}
 	);
 	$("img.star").click(function(){
-		var newval = $(this).attr("value");
+		var newVert = $(this).attr("value");
 		
-		var jqxhr = $.post( "knygosVertinimas.php", { id: <?php echo $p_id; ?>, ver: newval }, function(data) {
-			//alert( "success" );
-			//alert( data );
+		$.post( "knygosVertinimas.php", { id: <?php echo $p_id; ?>, ver: newVert }, function(data) {
+			if (data == 0 || data == 1 || data == 2){
+				num = newVert == num ? 0 : newVert;
+			}else{
+				alert( "Įvyko klaida" );
+			}
 			
-			num = newval == num ? 0 : newval;
 			defaultStars();
 		})
 		.fail(function() {
 			alert( "Įvyko klaida" );
 		})
-		
 	});
+	
+	$("#mark").click(function(){
+		$.post( "knygosZymejimas.php", { id: <?php echo $p_id; ?> }, function(data) {
+			alert(data);
+			if (data == 0){
+				mark = false;
+				$("#mark").attr("value", "Įdėti į lentyną");
+			}else if (data == 1){
+				mark = true;
+				$("#mark").attr("value", "Išimti iš lentynos");
+			}else{
+				alert( "Įvyko klaida" );
+			}
+		})
+		.fail(function() {
+			alert( "Įvyko klaida" );
+		})
+	});
+	
+	$("#del").click(function(){
+		$.post( "knygosSalinimas.php", { id: <?php echo $p_id; ?> }, function(data) {
+			if (data == 1){
+				alert( "Knyga pašalinta" );
+				$(location).attr('href', 'knyguSarasas.php');
+			}else if (data == -1){
+				alert( "Negalima šalinti, kol yra egzempliorių" );
+			}else{
+				alert( "Įvyko klaida" );
+			}
+		})
+		.fail(function() {
+			alert( "Įvyko klaida" );
+		})
+	});
+	/*
+	$("#add-copy").click(function(){
+		$.post( "egzemplioriausKurimas.php", { id: <?php echo $p_id; ?> }, function(data) {
+			alert(data);
+			if (data == 0){
+				alert( "Knyga pašalinta" );
+				// redirect
+			}else if (data == -1){
+				alert( "Negalima šalinti, kol yra egzempliorių" );
+			}else{
+				alert( "Įvyko klaida" );
+			}
+		})
+		.fail(function() {
+			alert( "Įvyko klaida" );
+		})
+	});
+	
+	$("#del-copy").click(function(){
+		$.post( "egzemplioriausSalinimas.php", { id: <?php echo $p_id; ?> }, function(data) {
+			alert(data);
+			if (data == 0){
+				alert( "Knyga pašalinta" );
+				// redirect
+			}else if (data == -1){
+				alert( "Negalima šalinti, kol yra egzempliorių" );
+			}else{
+				alert( "Įvyko klaida" );
+			}
+		})
+		.fail(function() {
+			alert( "Įvyko klaida" );
+		})
+	});//*/
 })
 	</script>
 </head>
@@ -114,11 +194,17 @@ Vertinti:
 <img value="5" class="star" src="star_gray.png"/>
 </div><br/>
 
+<input id="mark" type="button" value="<?php echo $marked ? "Išimti iš lentynos" : "Įdėti į lentyną"; ?>"/><br/>
 
-<input type="button" value="Pažymėti"/><br/>
+
 
 <input type="button" value="Rezervuoti">
-<!-- sutarciu modulis: rezeravimas -->
+<!-- 
+sutarciu modulis:
+	rezeravimas 
+-->
+
+
 
 <hr/>
 Darbuotojams:<br/>
@@ -126,10 +212,7 @@ Darbuotojams:<br/>
 <?php echo "<input type='hidden' name='id' value='".$p_id."'/>"; ?>
 	<input type="submit" value="Redaguoti kūrinį"/>
 </form>
-<form action="knygosSalinimas.php" method='post'>
-<?php echo "<input type='hidden' name='id' value='".$p_id."'/>"; ?>
-	<input type="submit" value="Šalinti kūrinį"/>
-</form>
+<input id="del" type="button" value="Šalinti kūrinį"/>
 
 <br/><br/>
 Egzemplioriai:<br/>
@@ -148,9 +231,6 @@ while (($row = mysqli_fetch_assoc($result2)) != null){
 ?>
 
 <br/>
-<div class="container" style="background-color:#f1f1f1">
-	<button onclick="javascript:history.back()">Grįžti</button>
-</div>
 
 </body>
 </html>

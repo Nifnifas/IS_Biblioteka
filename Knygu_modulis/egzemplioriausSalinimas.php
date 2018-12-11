@@ -2,6 +2,8 @@
 session_start();
 include("../nustatymai.php");
 
+// tik darbuotojams
+
 $db = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
 
 $req_id = $_REQUEST["id"];
@@ -19,7 +21,8 @@ if (mysqli_num_rows($db, $result) > 0){
 
 $query2 = "DELETE FROM egzempliorius WHERE id = $p_id";
 $result2 = mysqli_query($db, $query2);
-
-header("Location: knyguSarasas.php");
 die();
+
+//header("Location: knyguSarasas.php");
+//die();
 ?>
