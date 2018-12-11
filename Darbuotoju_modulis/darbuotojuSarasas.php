@@ -19,6 +19,7 @@
         <?php
             session_start();
             include("../nustatymai.php");
+            $AtostogaujanciuSk = 0;
             $db=mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
             $query = "SELECT id, vardas, pavarde, tel_nr, adresas, isidarbinimo_data, asmens_kodas, el_pastas, sukaupta_atostogu, statusas, statusas_iki "
                     . "FROM " . TBL_DARBUOTOJAS . " ORDER BY id ASC";
@@ -26,6 +27,7 @@
             if (!$result || (mysqli_num_rows($result) < 1)){  
 			{echo "Klaida skaitant lentelę `darbuotojas`"; exit;}
             }else{
+                $visoDarb = mysqli_num_rows($result);
                 echo "<table>";
                 echo "<tr><td>ID</td><td>Vardas</td><td>Pavardė</td><td>Asmens kodas</td><td>Adresas</td><td>Telefono nr.</td><td>El. Paštas</td><td>Įsidarbinimo data</td><td>"
                 . "Atostogų likutis (d.d.)</td><td>Statusas</td><td>Iki (data)</td></tr>";
@@ -35,7 +37,7 @@
                         include ("keistiStatusa.php");
                     }
                     if($row["statusas_iki"] == '0000-00-00'){
-                        echo "<tr><td>" . $row["id"]. "</td><td>" . $row["vardas"]. "</td><td>" . $row["pavarde"]. "</td><td>" . $row["asmens_kodas"] . "</td><td>" . $row["adresas"] . "</td><td>"
+                        echo "<tr><td>" . $row["id"]. "</td><td>" . $row["vardas"]. "</td><td>" . $row["pavarde"]. "</td><td>" . $row["asmens_kodas"] . "</td><td>" . $row["adresas"] . "</td><td>+370 "
                             . $row["tel_nr"] . "</td><td>" . $row["el_pastas"] . "</td><td>" . $row["isidarbinimo_data"] . "</td><td>"
                             . $row["sukaupta_atostogu"] . "</td><td>" . $row["statusas"] . "</td><td>" . "-" . "</td><td>"
                             . "<form action=\"atlyginimoForma.php\" method=\"post\"><input type=\"submit\" value =\"Atlyginimas\"/><input type=\"hidden\" name=\"user_id\" value=\"$row[id]\">"   
@@ -45,7 +47,7 @@
                             . "</form></td></tr>";
                     }
                     else{
-                        echo "<tr><td>" . $row["id"]. "</td><td>" . $row["vardas"]. "</td><td>" . $row["pavarde"]. "</td><td>" . $row["asmens_kodas"] . "</td><td>" . $row["adresas"] . "</td><td>"
+                        echo "<tr><td>" . $row["id"]. "</td><td>" . $row["vardas"]. "</td><td>" . $row["pavarde"]. "</td><td>" . $row["asmens_kodas"] . "</td><td>" . $row["adresas"] . "</td><td>+370 "
                             . $row["tel_nr"] . "</td><td>" . $row["el_pastas"] . "</td><td>" . $row["isidarbinimo_data"] . "</td><td>"
                             . $row["sukaupta_atostogu"] . "</td><td>" . $row["statusas"] . "</td><td>" . $row["statusas_iki"] . "</td><td>"
                             . "<form action=\"atlyginimoForma.php\" method=\"post\"><input type=\"submit\" value =\"Atlyginimas\"/><input type=\"hidden\" name=\"user_id\" value=\"$row[id]\">"   
@@ -53,14 +55,22 @@
                             . "</form></td><td>" . "<form action=\"redagavimoForma.php\" method=\"post\"><input type=\"submit\" value =\"Redaguoti\"/><input type=\"hidden\" name=\"user_id\" value=\"$row[id]\">" 
                             . "</form></td><td>" . "<form action=\"salinimasDarbuotojo.php\" method=\"post\" onsubmit=\"return confirm('Ar tikrai norite ištrinti šį darbuotoją?');\"><input type=\"submit\" value =\"Šalinti\"/><input type=\"hidden\" name=\"user_id\" value=\"$row[id]\">" 
                             . "</form></td></tr>";
+                        $AtostogaujanciuSk++;
                     } 
                 }
                 echo "</table>";
+                $_SESSION['atos'] = $AtostogaujanciuSk;
             }
         ?>
         <div id="time">
-    <?php echo date('H:i:s');?>
-  </div> 
+    <?php
+        echo "Viso darbuotojų: <b>$visoDarb</b> - ";
+        echo "Iš jų atostogauja: <b>$AtostogaujanciuSk</b> - ";
+        echo "Atnaujinta: ";
+        date_default_timezone_set('Europe/Vilnius');
+        echo date('H:i:s');
+    ?>
+        </div> 
         
         <script type="text/javascript">
             setInterval("my_function();",600000); 

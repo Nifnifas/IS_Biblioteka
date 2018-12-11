@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 include("../nustatymai.php");
 
 $user_id = $_POST['user_id'];
@@ -33,25 +33,25 @@ $db=mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
         <br>
         <form action="redagavimasDarbuotojo.php" method="post">
             <div class="container">
-            <input type="id" name="id" value="<?php echo $row['id']; ?>" hidden="">
+                <input type="id" name="id" value="<?php echo $row['id']; ?>" hidden="" required="">
             <br>  
             <label for="vardas"><b>Vardas</b></label>
-            <input type="vardas"  name="vardas" value="<?php echo $row['vardas']; ?>">
+            <input type="text"  name="vardas" value="<?php echo $row['vardas']; ?>" pattern=".{3,20}" required title="">
             <br>
             <label for="pavarde"><b>Pavardė</b></label>
-            <input type="pavarde"  name="pavarde" value="<?php echo $row['pavarde']; ?>">
+            <input type="text"  name="pavarde" value="<?php echo $row['pavarde']; ?>" pattern=".{4,20}" required title="">
             <br>
             <label for="asmens_kodas"><b>Asmens kodas</b></label>
-            <input type="asmens_kodas" name="asmens_kodas" value="<?php echo $row['asmens_kodas']; ?>">
+            <input type="number" name="asmens_kodas" value="<?php echo $row['asmens_kodas']; ?>" min="30001010000" max="69912319999" pattern=".{11,11}" required title="">
             <br>
             <label for="tel_nr"><b>Telefono nr.</b></label>
-            <input type="tel_nr" name="tel_nr" value="<?php echo $row['tel_nr']; ?>">
+            +370<input type="number" name="tel_nr" value="<?php echo $row['tel_nr']; ?>" min="60000000" max="69999999" pattern=".{8,8}" required title="">
             <br>
             <label for="adresas"><b>Adresas</b></label>
-            <input type="adresas" name="adresas" value="<?php echo $row['adresas']; ?>">
+            <input type="text" name="adresas" value="<?php echo $row['adresas']; ?>" pattern=".{8, 30}" required title="">
             <br>
             <label for="el_pastas"><b>El. paštas</b></label>
-            <input type="el_pastas" name="el_pastas" value="<?php echo $row['el_pastas']; ?>">
+            <input type="email" name="el_pastas" value="<?php echo $row['el_pastas']; ?>" pattern=".{3,30}" required title="">
             <br>
             <br>
             <button type="submit">Atnaujinti duomenis</button>

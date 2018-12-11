@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 include("../nustatymai.php");
 
 $user_id = $_POST['user_id'];
@@ -32,34 +32,34 @@ $db=mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
                 <td><?php echo "$userName $userSurname";?></td>
             </tr>
         </table>
-        <?php include("atlyginimuSarasas.php");
+        <?php include("atlyginimuSarasasShort.php");
                 $today = date("Y-m-d");
-                $nextPayment = date('Y-m-d', strtotime($paskAlgosData. ' - 1 days'));
+                $nextPayment = date('Y-m-d', strtotime($paskAlgosData. ' + 14 days'));
                 if($today < $nextPayment){
                     echo "<br><br>Alga šiam darbuotojui jau išmokėta. Sekančią algą galėsite mokėti $nextPayment";
                 }
                 else{
                             echo "<form action=\"skirtiAtlyginima.php\" method=\"post\">
                                         <div class=\"container\">
-                                        <input type=\"id\" name=\"id\" value=\"$user_id\" hidden=\"\">
+                                        <input type=\"id\" name=\"id\" value=\"$user_id\" hidden=\"\" required=\"\">
                                         <br>  
                                         <label for=\"tarifas\"><b>Tarifas</b></label>
-                                        <input oninput=\"findTotal()\" type=\"text\"  name=\"tarifas\" class=\"alga\" value=\"2.55\">
+                                        <input oninput=\"findTotal()\" type=\"number\"  name=\"tarifas\" class=\"alga\" value=\"2.55\" min=\"2.50\" max=\"4.55\" required title=\"\">
                                         <br>
                                         <label for=\"valandos\"><b>Valandu sk. </b></label>
-                                        <input oninput=\"findTotal()\" type=\"valandos\" name=\"valandos\" class=\"alga\" value=\"160\">
+                                        <input oninput=\"findTotal()\" type=\"number\" name=\"valandos\" class=\"alga\" value=\"160\" min=\"1\" max=\"190\" required title=\"\">
                                         <br>
                                         <label for=\"mokesciai\"><b>Mokesciai %</b></label>
-                                        <input oninput=\"findTotal()\" type=\"mokesciai\" name=\"mokesciai\" class=\"alga\" value=\"9\">
+                                        <input oninput=\"findTotal()\" type=\"number\" name=\"mokesciai\" class=\"alga\" value=\"9\" min=\"9\" max=\"15\" required title=\"\">
                                         <br>
                                         <label for=\"premija\"><b>Premija</b></label>
-                                        <input oninput=\"findTotal()\" type=\"premija\" name=\"premija\" class=\"alga\" value=\"0\">
+                                        <input oninput=\"findTotal()\" type=\"number\" name=\"premija\" class=\"alga\" value=\"0\" min=\"0\" max=\"300\" required title=\"\">
                                         <br>
                                         <label for=\"apskaiciuotas\"><b>Viso apskaičiuota:</b></label>
-                                        <input onmouseover=\"findTotal()\" type=\"text\" name=\"total\" id=\"total\" value=\"408\" readonly>
+                                        <input onmouseover=\"findTotal()\" type=\"number\" name=\"total\" id=\"total\" value=\"408\" required title=\"\" readonly>
                                         <br>
                                         <label for=\"ismokamas\"><b>Išmokama:</b></label>
-                                        <input onmouseover=\"findTotal()\" type=\"text\" name=\"toPay\" id=\"toPay\" value=\"371.28\" readonly>
+                                        <input onmouseover=\"findTotal()\" type=\"number\" name=\"toPay\" id=\"toPay\" value=\"371.28\" required title=\"\" readonly>
                                         <br>
                                         <br>
                                         <button type=\"submit\">Išmokėti</button>

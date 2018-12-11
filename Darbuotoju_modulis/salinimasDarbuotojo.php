@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <html>
 <head>
     <title>Bibliotekos informacinė sistema</title>
@@ -11,6 +14,8 @@
         <?php
 
               include("../nustatymai.php");
+              $_SESSION['iden'] = $_POST['user_id'];
+              include("salintiAtlyginimuIrasus.php");
 
               // Create connection
               $conn = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
@@ -18,11 +23,10 @@
               if (!$conn) {
                   die("Connection failed: " . mysqli_connect_error());
               }
-
               $sql = "DELETE FROM " . TBL_DARBUOTOJAS . " WHERE id = $_POST[user_id]";
               if(mysqli_query($conn, $sql)){
-                  echo "<table border=\"1\" cellpadding=\"10\"><tr align=\"center\"><td>Darbuotojas sėkmingai pašalintas!</td></tr></table>";
-                  header( "refresh:1;url=darbuotojuSarasas.php");
+                  echo "<table border=\"1\" cellpadding=\"10\"><tr align=\"center\"><td>Darbuotojas sėkmingai pašalintas iš sistemos!</td></tr></table>";
+                  header( "refresh:2;url=darbuotojuSarasas.php");
               } else{
                   echo "Klaida: $sql. " . mysqli_error($conn);
               }

@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <html>
 <head>
     <title>Bibliotekos informacinė sistema</title>
@@ -12,7 +15,6 @@
 <?php
 
   include("../nustatymai.php");
-
   
   $vardas = $_POST['vardas'];
   $pavarde = $_POST['pavarde'];
