@@ -13,6 +13,7 @@
             <tr align="center">
                 <td>Čia bus galima matyti ataskaitų sąrašą</td>
                  <tr><td><a href="Renginiu_modulis/renginiuAtaskaita.php">Renginių ataskaitos</a></td></tr>
+                 <td><a href="/is_biblioteka/Klientu_modulis/skaitytojuAtaskaita.php">Skaitytojų ataskaita</td>
             <tr><td><a href="suvestiAtaskaitosDuomenis.php">Išplėstinė ataskaita</a></td></tr>
             </tr>
         </table>
