@@ -12,6 +12,7 @@
         <table border="1" cellpadding="10">
             <tr align="center">
                 <td>Čia bus galima matyti ataskaitų sąrašą</td>
+                 <tr><td><a href="Renginiu_modulis/renginiuAtaskaita.php">Renginių ataskaitos</a></td></tr>
             <tr><td><a href="suvestiAtaskaitosDuomenis.php">Išplėstinė ataskaita</a></td></tr>
             </tr>
         </table>
