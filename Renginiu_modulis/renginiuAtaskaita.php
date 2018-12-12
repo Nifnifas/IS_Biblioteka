@@ -117,7 +117,7 @@ $db = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
             <br>
         <br>
         <div class="container" style="background-color:#f1f1f1">
-            <button onclick="javascript:history.back()">Grįžti</button>
+            <a href="../index.php">Grįžti</button>
         </div>
     </center>
 </body>

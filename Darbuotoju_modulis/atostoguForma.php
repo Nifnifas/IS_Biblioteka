@@ -56,7 +56,7 @@ $status = $row['statusas'];
             if($status == "Atostogauja"){
                 echo "Atostogų šiam darbuotojui suteikti negalite - jis jau atostogauja!";
             }
-            else{
+            if($AtostogaujanciuSk > 1){
                 echo "Atostogų skirti negalite, nes šiuo metu atostogauja maksimalus kiekis darbuotojų!";
             }
         ?>

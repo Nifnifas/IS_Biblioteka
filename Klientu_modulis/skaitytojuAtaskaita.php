@@ -45,7 +45,7 @@ echo "</table>";
 ?>
         <br>
         <div class="container" style="background-color:#f1f1f1">
-            <button onclick="javascript:history.back()">Grįžti į pradžią</button>
+            <a href="../index.php">Grįžti</button>
         </div>
         </form>     
     </center>

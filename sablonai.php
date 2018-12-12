@@ -17,7 +17,7 @@ function navbar_inside(){
 	echo "<div class=\"container\">";
 	echo "<a href=\"..\"><h2>Bibliotekos informacinė sistema</h2></a>";
 	echo "<a href=\"../Knygu_modulis/knyguSarasas.php\">Knygų sąrašas</a> ";
-	if (true)	echo "<a href=\"../Knygu_modulis/pazymetuKnyguSarasas.php\">Pasižymėtų knygų sąrašas</a> "; // tikrinti, ar klientas
+	if (isset($_SESSION['userLevel']) && $_SESSION['userLevel'] == 1)	echo "<a href=\"../Knygu_modulis/pazymetuKnyguSarasas.php\">Pasižymėtų knygų sąrašas</a> "; // tikrinti, ar klientas
 	
 	// cia prideti nuorodas i kitas sistemos dalis
 	//echo "<a href=\"../??_modulis/puslapis.php\">Sąrašas</a> ";

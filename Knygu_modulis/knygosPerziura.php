@@ -3,8 +3,6 @@ session_start();
 include("../nustatymai.php");
 include("../sablonai.php");
 
-// nebutinai klientams, bet klientams reikia id
-$user_id = 1; // prisijungus, cia turetu buti user id (jeigu klientas)
 
 $db = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
 mysqli_set_charset($db, "utf8");
@@ -29,7 +27,9 @@ $result2 = mysqli_query($db, $query2);
 // klientams //
 $vertinimas = 0;
 $marked = false;
-if ($user_id > 0){
+if (isset($_SESSION['userLevel']) && $_SESSION['userLevel'] == 1){
+    
+        $user_id = $_SESSION['userId']; // prisijungus, cia turetu buti user id (jeigu klientas)
 	$query3 = "SELECT * FROM vertinimas WHERE fk_KurinysID = $p_id AND fk_KlientasID = $user_id";
 	$result3 = mysqli_query($db, $query3);
 	$row3 = mysqli_fetch_assoc($result3);
@@ -196,6 +196,9 @@ echo "<tr><td>".$row["Aprasymas"]."</td></tr>";
 
 
 <hr/>
+<?php
+if (isset($_SESSION['userLevel']) && $_SESSION['userLevel'] == 1){
+    ?>
 Klientams:<br/>
 
 Vertinti:
@@ -216,8 +219,11 @@ Vertinti:
 <button type="submit" name="register-submit" class="btn btn-sm">Rezervuoti</button>
 </form>
 
+<?php } 
+if (isset($_SESSION['userLevel']) && $_SESSION['userLevel'] == 2){
+    
+?>
 
-<hr/>
 Darbuotojams:<br/>
 <form action="knygosRedagavimas.php" method='post'>
 <?php echo "<input type='hidden' name='id' value='".$p_id."'/>"; ?>
@@ -255,8 +261,9 @@ while (($row = mysqli_fetch_assoc($result2)) != null){
 		echo "</form>";
 	echo "</div>";
 }
+	echo "</div>";
+}
 ?>
-</div>
 
 </div>
 
