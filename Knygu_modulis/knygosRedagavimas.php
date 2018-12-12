@@ -1,5 +1,13 @@
 <?php
+session_start();
 include("../nustatymai.php");
+include("../sablonai.php");
+
+// tik darbuotojams
+if ($_SESSION['userLevel'] != 2){
+	header("Location: knyguSarasas.php");
+	die();
+}
 
 $db = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
 mysqli_set_charset($db, "utf8");
@@ -56,49 +64,43 @@ if (isset($_REQUEST["submit"])){
 	die();
 }
 
+
+echo "<html>";
+head("Kūrinio sukūrimas");
+echo "<body>";
+
+navbar_inside();
+
+echo "<div class='container'>";
+
+
+echo "<form method='post'>";
+	echo "<div class='form-group'>";
+		echo "<label for='pav'>Pavadinimas</label>";
+		echo "<input id='pav' placeholder='Pavadinimas' type='text' name='pav' class='form-control' value='".$req_pav."'/>";
+	echo "</div>";
+	echo "<div class='form-group'>";
+		echo "<label for='aut'>Autorius</label>";
+		echo "<input id='aut' placeholder='Autorius' type='text' name='aut' class='form-control' value='".$req_aut."'/>";
+	echo "</div>";
+	echo "<div class='form-group'>";
+		echo "<label for='met'>Išleidimo metai</label>\n";
+		echo "<input id='met' placeholder='Išleidimo metai' type='number' name='met' class='form-control' value='".$req_met."'/>";
+	echo "</div>";
+	echo "<div class='form-group'>";
+		echo "<label for='apr'>Aprašymas</label>\n";
+		echo "<textarea id='apr' placeholder='Aprašymas' name='apr' class='form-control'>".$req_apr."</textarea>";
+	echo "</div>";
+echo "<input type='submit' name='submit' class='btn btn-primary' value='Įrašyti'/>";
+echo "</form>";
+
+if (!empty($err_msg)){
+	echo "<div class='alert alert-danger'>";
+	echo $err_msg;
+	echo "</div>";
+}
 ?>
-<html>
-<head>
-	<title>Kūrinio redagavimas</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-</head>
-<body>
-
-<a href="knyguSarasas.php">Knygų sąrašas</a><br/>
-
-<center>
-	<form method="post">
-	<table>
-	<?php
-		echo "<tr><td>Pavadinimas:</td><td>";
-			echo "<input type='text' name='pav' value='".$req_pav."'/>";
-		echo "</td></tr>";
-		
-		echo "<tr><td>Autorius:</td><td>";
-			echo "<input type='text' name='aut' value='".$req_aut."'/>";
-		echo "</td></tr>";
-		
-		echo "<tr><td>Išleidimo metai:</td><td>";
-			echo "<input type='number' name='met' value='".$req_met."'/>";
-		echo "</td></tr>";
-		
-		echo "<tr><td>Aprašymas:</td><td><textarea name='apr'>";
-			echo $req_apr;
-		echo "</textarea></td></tr>";
-		
-		echo "<input type='hidden' name='id' value='".$req_id."'/>";
-	?>
-	</table>
-
-	<input type="submit" name="submit" value="Įrašyti"/>
-	</form>
-	<?php
-		if (!empty($err_msg)){
-			echo $err_msg;
-		}
-	?>
-	<br/>
-</center>
+<br/>
 
 </body>
 </html>

@@ -1,7 +1,9 @@
 <?php
 session_start();
 include("../nustatymai.php");
+include("../sablonai.php");
 
+// nebutinai klientams, bet klientams reikia id
 $user_id = 1; // prisijungus, cia turetu buti user id (jeigu klientas)
 
 $db = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
@@ -18,11 +20,15 @@ $query = "SELECT * FROM kurinys WHERE id = $p_id";
 $result = mysqli_query($db, $query);
 $row = mysqli_fetch_assoc($result);
 
-
+// darbuotojams //
 $query2 = "SELECT * FROM egzempliorius WHERE fk_KurinysID = $p_id";
 $result2 = mysqli_query($db, $query2);
+// - //
 
+
+// klientams //
 $vertinimas = 0;
+$marked = false;
 if ($user_id > 0){
 	$query3 = "SELECT * FROM vertinimas WHERE fk_KurinysID = $p_id AND fk_KlientasID = $user_id";
 	$result3 = mysqli_query($db, $query3);
@@ -30,22 +36,28 @@ if ($user_id > 0){
 	if ($row3){ // atrodo, kad veikia
 		$vertinimas = intval($row3["Vertinimas"]);
 	}
+	
+	$query4 = "SELECT * FROM lentynos_zyma WHERE lentynos_zyma.fk_KlientasID = $user_id AND lentynos_zyma.fk_KurinysID = $p_id";
+	$result4 = mysqli_query($db, $query4);
+	if (mysqli_num_rows($result4) > 0){
+		$marked = true;
+	}
 }
+// - //
 
-?>
 
-<html>
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<title>Knyga: <?php echo $row["Pavadinimas"]; ?></title>
-	<style>
+echo "<html>";
+$marker = $marked ? "true" : "false";
+
+$extra = <<<HERE
+<style>
 img.star:hover{
 	cursor: pointer;
 }
-	</style>
-	<script>
-var num = <?php echo $vertinimas; ?>;
+</style>
+<script>
+var num = {$vertinimas};
+var mark = {$marker};
 function defaultStars(){
 	$("img.star").attr("src","star_gray.png");
 	
@@ -67,31 +79,110 @@ $(function(){
 		}
 	);
 	$("img.star").click(function(){
-		var newval = $(this).attr("value");
+		var newVert = $(this).attr("value");
 		
-		var jqxhr = $.post( "knygosVertinimas.php", { id: <?php echo $p_id; ?>, ver: newval }, function(data) {
-			//alert( "success" );
-			//alert( data );
+		$.post( "knygosVertinimas.php", { id: {$p_id}, ver: newVert }, function(data) {
+			if (data == 0 || data == 1 || data == 2){
+				num = newVert == num ? 0 : newVert;
+			}else{
+				alert( "Įvyko klaida" );
+			}
 			
-			num = newval == num ? 0 : newval;
 			defaultStars();
 		})
 		.fail(function() {
 			alert( "Įvyko klaida" );
 		})
-		
 	});
+	
+	$("#mark").click(function(){
+		$.post( "knygosZymejimas.php", { id: {$p_id} }, function(data) {
+			if (data == 0){
+				mark = false;
+				$("#mark").attr("value", "Įdėti į lentyną");
+			}else if (data == 1){
+				mark = true;
+				$("#mark").attr("value", "Išimti iš lentynos");
+			}else{
+				alert( "Įvyko klaida" );
+			}
+		})
+		.fail(function() {
+			alert( "Įvyko klaida" );
+		})
+	});
+	
+	$("#del").click(function(){
+		$.post( "knygosSalinimas.php", { id: {$p_id} }, function(data) {
+			if (data == 1){
+				alert( "Knyga pašalinta" );
+				$(location).attr('href', 'knyguSarasas.php');
+			}else if (data == -1){
+				alert( "Negalima šalinti, kol yra egzempliorių" );
+			}else{
+				alert( "Įvyko klaida" );
+			}
+		})
+		.fail(function() {
+			alert( "Įvyko klaida" );
+		})
+	});
+	
+	$("#add-copy-btn").click(function(){
+		var code = $(this).parent().prev().prop("value");
+		//alert(code);
+		$.post( "egzemplioriausKurimas.php", { id: {$p_id}, kodas: code }, function(data) {
+			//alert(data);
+			
+			if (data == 1){
+				//alert( "Egzempliorius prid4tas" );
+				
+				$.ajax({type: "POST", url: "knygosPerziura.php", data: { id: {$p_id} }, success: function() {   
+					location.reload();
+				}});
+			}else{
+				alert( "Įvyko klaida" );
+			}
+		})
+		.fail(function() {
+			alert( "Įvyko klaida" );
+		})
+	});
+	
+	$(".del-copy-btn").click(function(){
+		var copyID = $(this).parent().prev().prop("value");
+		alert(copyID);
+		$.post( "egzemplioriausSalinimas.php", { id: copyID }, function(data) {
+			alert(data);
+			if (data == 1){
+				//alert( "Egzempliorius pašalintas" );
+				
+				$.ajax({type: "POST", url: "knygosPerziura.php", data: { id: {$p_id} }, success: function() {   
+					location.reload();
+				}});
+			}else if (data == -1){
+				alert( "Negalima trinti, kol yra sutarčių" );
+			}else{
+				alert( "Įvyko klaida" );
+			}
+		})
+		.fail(function() {
+			alert( "Įvyko klaida" );
+		})
+	});//*/
 })
-	</script>
-</head>
-<body>
+</script>
+HERE;
 
-<a href="knyguSarasas.php">Knygų sąrašas</a><br/>
+head("Knyga: ".$row["Pavadinimas"], $extra);
+echo "<body>";
 
-<center>
-	<table width="50%">
-<?php
+navbar_inside();
 
+echo "<div class='container'>";
+
+echo "<center>";
+echo "<table width='50%'>";
 
 echo "<tr><td align='center'><h2>".$row["Pavadinimas"]."</h2></td></tr>";
 echo "<tr><td>Autorius: ".$row["Autorius"]."</td></tr>";
@@ -100,8 +191,10 @@ echo "<tr><td>".$row["Aprasymas"]."</td></tr>";
 
 //echo "Ver: [".$vertinimas."]";
 ?>
-	</table>
+</table>
 </center>
+
+
 <hr/>
 Klientams:<br/>
 
@@ -114,44 +207,57 @@ Vertinti:
 <img value="5" class="star" src="star_gray.png"/>
 </div><br/>
 
+<input id="mark" type="button" class="btn btn-sm" value="<?php echo $marked ? "Išimti iš lentynos" : "Įdėti į lentyną"; ?>"/>
+<br/>
 
-<input type="button" value="Pažymėti"/><br/>
 
-<form action="../Sutarciu_modulis/Procesai/rezervuoti.php?book=<?php echo $req_id;?>"" method="post">
-	<button type="submit" name="register-submit">Rezervuoti</button>
+<form action="../Sutarciu_modulis/Procesai/rezervuoti.php" method="POST">
+<?php echo "<input type='hidden' name='book' value='".$p_id."'/>"; ?>
+<button type="submit" name="register-submit" class="btn btn-sm">Rezervuoti</button>
 </form>
-<!-- sutarciu modulis: rezeravimas -->
+
 
 <hr/>
 Darbuotojams:<br/>
 <form action="knygosRedagavimas.php" method='post'>
 <?php echo "<input type='hidden' name='id' value='".$p_id."'/>"; ?>
-	<input type="submit" value="Redaguoti kūrinį"/>
+	<input type="submit" class="btn btn-sm" value="Redaguoti kūrinį"/>
 </form>
-<form action="knygosSalinimas.php" method='post'>
-<?php echo "<input type='hidden' name='id' value='".$p_id."'/>"; ?>
-	<input type="submit" value="Šalinti kūrinį"/>
-</form>
+<input id="del" type="button" class="btn btn-sm" value="Šalinti kūrinį"/>
 
 <br/><br/>
-Egzemplioriai:<br/>
-<form action="egzemplioriausKurimas.php" method='post'>
-<?php echo "<input type='hidden' name='id' value='".$p_id."'/>"; ?>
-Kodas: <input type="text" name="kodas"/><input type="submit" value="Pridėti"/>
-</form>
+<div class="container">
+	<div class="row my-2">
+		<span>Egzemplioriai:</span>
+	</div>
+	<div class="row">
+		<form action="egzemplioriausKurimas.php" method='post' style='width: 100%;'>
+			<div class="input-group mb-2">
+				<?php echo "<input type='hidden' name='id' value='".$p_id."'/>"; ?>
+				<input type="text" name="kodas" class="form-control"/>
+				<div class="input-group-append">
+					<input type="button" id="add-copy-btn" class="btn btn-success" value='Pridėti'/>
+				</div>
+			</div>
+		</form>
+	</div>
 <?php
 while (($row = mysqli_fetch_assoc($result2)) != null){
-	echo "<form action='egzemplioriausSalinimas.php' method='post'>";
-	echo $row["Kodas"];
-	echo "<input type='hidden' name='id' value='".$row["id"]."'/>";
-	echo "<input type='submit' value='Šalinti'/>";
-	echo "</form>";
+	echo "<div class='row'>";
+		echo "<form action='egzemplioriausSalinimas.php' method='post' style='width: 100%;'>";
+			echo "<div class='input-group mb-2'>";
+				echo "<input type='text' class='form-control' value=".$row["Kodas"]." disabled />";
+				echo "<input type='hidden' name='id' value='".$row["id"]."'/>";
+				echo "<div class='input-group-append'>";
+					echo "<input class='btn btn-danger del-copy-btn' type='button' value='Šalinti' />";
+				echo "</div>";
+			echo "</div>";
+		echo "</form>";
+	echo "</div>";
 }
 ?>
+</div>
 
-<br/>
-<div class="container" style="background-color:#f1f1f1">
-	<button onclick="javascript:history.back()">Grįžti</button>
 </div>
 
 </body>

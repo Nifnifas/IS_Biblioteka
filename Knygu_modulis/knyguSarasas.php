@@ -1,32 +1,28 @@
 <?php
+session_start();
 include("../nustatymai.php");
+include("../sablonai.php");
 
 $db = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
 mysqli_set_charset($db, "utf8");
 
 
-?>
+echo "<html>";
+head("Knygų sąrašas");
+echo "<body>";
 
-<html>
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Knygų sąrašas</title>
-</head>
-<body>
+navbar_inside();
 
-Darbuotojams:
-<a href="knygosKurimas.php">Naujas kūrinys</a>
-<br/>
-Klientams:
-<a href="pazymetuKnyguSarasas.php">Pažymėtų knygų sąrašas</a>
-<br/>
+echo "<div class='container'>";
 
-<center>
-	<h2>Knygų sąrašas</h2>
+if ($_SESSION['userLevel'] == 2) // tik darbuotojams
+	echo "<a href='knygosKurimas.php'>Naujas kūrinys</a><br/>";
 
-	Paieška:<br/><br/>
-	<form method="post">
-<?php
+echo "<center><h2>Knygų sąrašas</h2></center>";
+
+echo "Paieška:<br/>";
+echo "<form method='post'>";
+
 $query = "SELECT * FROM kurinys WHERE 1";
 
 $search_pav = "";
@@ -38,42 +34,38 @@ if (isset($_REQUEST["submit"])){
 	$query .= " AND pavadinimas LIKE '%".mysqli_real_escape_string($db, $search_pav)."%'";
 	$query .= " AND autorius LIKE '%".mysqli_real_escape_string($db, $search_aut)."%'";
 }
-echo "Pavadinimas: <input type='text' name='pav' value='".$search_pav."'/>";
-echo "Autorius: <input type='text' name='aut' value='".$search_aut."'/>";
-?>
-	<input type="submit" name="submit" value="Ieškoti"/>
-	</form>
+echo "Pavadinimas: <input type='text' name='pav' value='".$search_pav."'/> ";
+echo "Autorius: <input type='text' name='aut' value='".$search_aut."'/> ";
 
-	<br/><br/><br/>
-	
-<?php
-
+echo "<input type='submit' name='submit' class='btn btn-sm' value='Ieškoti'/>";
+echo "</form>";
 
 $result = mysqli_query($db, $query);
 
-echo "<table border='1' cellpadding='5'>";
-echo "<tr><td>Pavadinimas</td><td>Autorius</td></tr>";
-while (($row = mysqli_fetch_assoc($result)) != null){
-	echo "<tr>";
-	
-	echo "<td>";
-		echo $row["Pavadinimas"];
-		echo "<form action='knygosPerziura.php' method='post'>";
-		echo "<input type='hidden' name='id' value='".$row["id"]."'/>";
-		echo "<input type='submit' value='Peržiūrėti'/>";
-		echo "</form>";
-	echo "</td>";
-	echo "<td>".$row["Autorius"]."</td>";
-	
-	echo "</tr>";
+if (mysqli_num_rows($result) > 0){
+	echo "<table class='table table-bordered table-hover'>";
+	echo "<thead><tr><th>Pavadinimas</th><th>Autorius</th></tr></thead>";
+	while (($row = mysqli_fetch_assoc($result)) != null){
+		echo "<tr>";
+		
+		echo "<td>";
+			echo $row["Pavadinimas"];
+			echo "<form action='knygosPerziura.php' method='post'>";
+			echo "<input type='hidden' name='id' value='".$row["id"]."'/>";
+			echo "<input type='submit' class='btn btn-sm' value='Peržiūrėti'/>";
+			echo "</form>";
+		echo "</td>";
+		echo "<td>".$row["Autorius"]."</td>";
+		
+		echo "</tr>";
+	}
+	echo "</table>";
+}else{
+	echo "Nėra, ką rodyti";
 }
-echo "</table>";
-?>
-        <br>
-                <div class="container" style="background-color:#f1f1f1">
-            <button onclick="javascript:history.back()">Grįžti į pradžią</button>
-        </div>
-</center>
 
-</body>
-</html>
+echo "</div>";
+
+echo "</body>";
+echo "</html>";
+?>
