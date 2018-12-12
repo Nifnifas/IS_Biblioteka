@@ -10,7 +10,7 @@
 
     $totalQuery = " SELECT SUM(`skola`.`Dydis`) AS suma 
                     FROM `skola`, `sutartis` 
-                    WHERE `skola`.`fk_SutartisID` = `sutartis`.`Sutarties_Nr` AND `sutartis`.`fk_KlientasID` = 1 AND `skola`.`Grazinimo_data` IS NULL";
+                    WHERE `skola`.`fk_SutartisID` = `sutartis`.`Sutarties_Nr` AND `sutartis`.`fk_KlientasID` = '$userId' AND `skola`.`Grazinimo_data` IS NULL";
 
     $result = mysqli_query($connect, $query) or die(mysqli_error($connect));
     $totalresult = mysqli_query($connect, $totalQuery) or die(mysqli_error($connect));

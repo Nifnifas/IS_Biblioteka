@@ -3,7 +3,7 @@
 $servername = "localhost";
 $DBusername = "root";
 $DBpassword = "";
-$DBname = "bibliotekos_is";
+$DBname = "is_bibliotekos";
 
 $connect = mysqli_connect($servername, $DBusername, $DBpassword, $DBname);
 mysqli_set_charset($connect,"utf8");

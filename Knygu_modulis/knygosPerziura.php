@@ -117,7 +117,9 @@ Vertinti:
 
 <input type="button" value="Pažymėti"/><br/>
 
-<input type="button" value="Rezervuoti">
+<form action="../Sutarciu_modulis/Procesai/rezervuoti.php?book=<?php echo $req_id;?>"" method="post">
+	<button type="submit" name="register-submit">Rezervuoti</button>
+</form>
 <!-- sutarciu modulis: rezeravimas -->
 
 <hr/>
