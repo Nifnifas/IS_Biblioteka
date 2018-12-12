@@ -23,10 +23,10 @@ $db = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
            <?php  
             echo "<tr align='center'>";
             
-            if ($_SESSION['userLevel'] == 1) {
+            if (isset($_SESSION['userLevel']) && $_SESSION['userLevel'] == 1) {
             echo "<a href='registruotiRengini.php'>Registruoti naują renginį</a><br/>";
         }
-        else if ($_SESSION['userLevel'] == 2) {
+        else if (isset($_SESSION['userLevel']) && $_SESSION['userLevel'] == 2) {
             echo "<a href='rezervuotuRenginiuKalendorius.php'>Rezervuoti renginiai</a><br/>";
         }
               echo "<p></p>";
@@ -57,6 +57,6 @@ else {
 
 ?>
         <br>
-        <div class="container" style="background-color:#f1f1f1">
-             <button onclick="javascript:history.go(-2)">Grįžti į pradžią</button>
-        </div>
+                 <form action="../index.php">
+                <button type="submit">Grįžti į pradžią</button>
+            </form>
