@@ -1,4 +1,5 @@
 <?php
+session_start();
 include("../nustatymai.php");
 
 $db = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
@@ -18,11 +19,18 @@ $db = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
     <center>
 	<h2>Renginių kalendorius</h2>
         <table border="1" cellpadding="10">
-            <tr align="center">
-            	Direktoriui:<a href="registruotiRengini.php">Registruoti naują renginį</a><br/>
-            	Klientams:<a href="rezervuotuRenginiuKalendorius.php">Rezervuoti renginiai</a><br/>
-                <p></p>
-                
+            
+           <?php  
+            echo "<tr align='center'>";
+            
+            if ($_SESSION['userLevel'] == 1) {
+            echo "<a href='registruotiRengini.php'>Registruoti naują renginį</a><br/>";
+        }
+        else if ($_SESSION['userLevel'] == 2) {
+            echo "<a href='rezervuotuRenginiuKalendorius.php'>Rezervuoti renginiai</a><br/>";
+        }
+              echo "<p></p>";
+           ?>    
 <?php
 $query = "SELECT * FROM renginiai ORDER BY Data asc";
 $result = mysqli_query($db, $query);

@@ -34,7 +34,15 @@ $date = new DateTime($row["Data"]);
 $time = new DateTime($row["Laikas"]);
 echo "<tr><td align='center'><h3>".$date->format('Y-m-d').", ".$time->format('H:i')."</h3></td></tr>";
 
-echo "Klientui:";
+$query = "SELECT renginiu_tipai.Tipas FROM renginiu_tipai INNER JOIN renginiai ON renginiai.Tipas = renginiu_tipai.id";
+
+$result = mysqli_query($db, $query);
+$row2 = mysqli_fetch_assoc($result);
+
+echo "<b>Renginio tipas: </b>".$row2["Tipas"]."<br>";
+echo "<b>Organizatorius: </b>".$row["Organizatorius"]."<br><br>";
+            
+            if ($_SESSION['userLevel'] == 2) {
 echo  "<table border='1' cellpadding='10'>";
                 
                 echo  "<tr align='center'>";
@@ -71,13 +79,7 @@ echo "</tr>";
 echo "</table>";
 echo "<p></p>";
 
-$query = "SELECT renginiu_tipai.Tipas FROM renginiu_tipai INNER JOIN renginiai ON renginiai.Tipas = renginiu_tipai.id";
 
-$result = mysqli_query($db, $query);
-$row2 = mysqli_fetch_assoc($result);
-
-echo "<b>Renginio tipas: </b>".$row2["Tipas"]."<br>";
-echo "<b>Organizatorius: </b>".$row["Organizatorius"]."<br><br>";
 
 echo "<table border='1' cellpadding='10'>";
 echo "<td align='center' colspan='2' width='400'>".$row["Aprasymas"]."</a></td>";
@@ -85,7 +87,10 @@ echo "</table>";
 
 
 echo "<p></p>";
-echo "Direktoriui: <br>";
+
+}
+        else if ($_SESSION['userLevel'] == 1) {
+       
             $_SESSION['id'] = $row['id'];
              $_SESSION['Pavadinimas'] = $row['Pavadinimas'];
               $_SESSION['Organizatorius'] = $row['Organizatorius'];
@@ -116,6 +121,7 @@ echo "<td align='center'>".$row["Vietu_sk"]."</td>";
    echo "</tr>";
   echo "<td align='center' colspan='5' width='400'>".$row["Aprasymas"]."</a></td>";
   echo "</table>";
+   }
   echo "<br>";
    echo "<div class='container' style='background-color:#f1f1f1'>";
    echo "<button onclick='javascript:history.back()'>Grįžti</button>";

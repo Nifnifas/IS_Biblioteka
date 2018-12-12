@@ -26,8 +26,9 @@ $query = "SELECT * FROM renginiai WHERE id = $p_id";
 $result = mysqli_query($db, $query);
 $row = mysqli_fetch_assoc($result);
 echo "<tr><td align='center'><h2>".$row["Pavadinimas"]."</h2></td></tr>";
-$date = new DateTime($row["Data_laikas"]);
-echo "<tr><td align='center'><h4>".$date->format('Y-m-d').", ".$date->format('H:i')."</h4></td></tr>";
+$date = new DateTime($row["Data"]);
+$time = new DateTime($row["Laikas"]);
+echo "<tr><td align='center'><h4>".$date->format('Y-m-d').", ".$time->format('H:i')."</h4></td></tr>";
 
 if (isset($_POST['submit']))
 {
