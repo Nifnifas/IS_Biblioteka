@@ -23,12 +23,16 @@
               if (!$conn) {
                   die("Connection failed: " . mysqli_connect_error());
               }
-              $sql = "DELETE FROM " . TBL_DARBUOTOJAS . " WHERE id = $_POST[user_id]";
-              if(mysqli_query($conn, $sql)){
+                $sec = "UPDATE " . TBL_VARTOTOJAI . " SET `darbuotojo_id` = DEFAULT"
+                . " WHERE `darbuotojo_id` = '$_POST[user_id]'";
+              
+              if(mysqli_query($conn, $sec)){
+                  $sql = "DELETE FROM " . TBL_DARBUOTOJAS . " WHERE id = $_POST[user_id]";
+                  mysqli_query($conn, $sql);
                   echo "<table border=\"1\" cellpadding=\"10\"><tr align=\"center\"><td>Darbuotojas sėkmingai pašalintas iš sistemos!</td></tr></table>";
                   header( "refresh:2;url=darbuotojuSarasas.php");
               } else{
-                  echo "Klaida: $sql. " . mysqli_error($conn);
+                  echo "Klaida: $sec. " . mysqli_error($conn);
               }
               mysqli_close($conn);
         ?>   
