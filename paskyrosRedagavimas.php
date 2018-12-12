@@ -23,10 +23,10 @@
     <label for="psw"><b>Slaptažodis</b></label>
     <input type="password"  name="psw">
     <br>
-    <label for="psw"><b>Pakartoti slaptažodį</b></label>
-    <input type="password"  name="psw">
+    <label for="psw1"><b>Pakartoti slaptažodį</b></label>
+    <input type="password"  name="psw1">
     <br>
-    <button type="submit">Keisti duomenis</button>
+    <button type="submit" name="update-submit">Keisti duomenis</button>
     <br>
     <td><a href="istrintiPaskyra.php">Ištrinti paskyrą?</a></td>
   </div>

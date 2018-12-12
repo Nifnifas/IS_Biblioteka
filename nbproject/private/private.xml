@@ -3,24 +3,41 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/IS_Biblioteka/Darbuotoju_modulis/atostoguForma.php</file>
             <file>file:/C:/xampp/htdocs/IS_Biblioteka/Darbuotoju_modulis/salinimasDarbuotojo.php</file>
             <file>file:/C:/xampp/htdocs/IS_Biblioteka/Knygu_modulis/knygosKurimas.php</file>
+            <file>file:/C:/xampp/htdocs/IS_Biblioteka/registracija.php</file>
             <file>file:/C:/xampp/htdocs/IS_Biblioteka/Darbuotoju_modulis/atlyginimuSarasas.php</file>
-            <file>file:/C:/xampp/htdocs/IS_Biblioteka/Darbuotoju_modulis/atlyginimoForma.php</file>
             <file>file:/C:/xampp/htdocs/IS_Biblioteka/Knygu_modulis/knygosPerziura.php</file>
+            <file>file:/C:/xampp/htdocs/IS_Biblioteka/lengvatuSarasas.php</file>
             <file>file:/C:/xampp/htdocs/IS_Biblioteka/Darbuotoju_modulis/darbuotojuSarasas.php</file>
-            <file>file:/C:/xampp/htdocs/IS_Biblioteka/Darbuotoju_modulis/darbuotojoRegistravimas.php</file>
+            <file>file:/C:/xampp/htdocs/IS_Biblioteka/Renginiu_modulis/redaguotiRengini.php</file>
             <file>file:/C:/xampp/htdocs/IS_Biblioteka/Darbuotoju_modulis/suteiktiAtostogas.php</file>
-            <file>file:/C:/xampp/htdocs/IS_Biblioteka/Darbuotoju_modulis/atnaujintiAtostogas.php</file>
+            <file>file:/C:/xampp/htdocs/IS_Biblioteka/istrintiPaskyra.php</file>
+            <file>file:/C:/xampp/htdocs/IS_Biblioteka/Procesai/dbConnect.php</file>
+            <file>file:/C:/xampp/htdocs/IS_Biblioteka/paskyrosRedagavimas.php</file>
+            <file>file:/C:/xampp/htdocs/IS_Biblioteka/Procesai/registruoti.php</file>
             <file>file:/C:/xampp/htdocs/IS_Biblioteka/Darbuotoju_modulis/redagavimoForma.php</file>
             <file>file:/C:/xampp/htdocs/IS_Biblioteka/Knygu_modulis/knyguSarasas.php</file>
+            <file>file:/C:/xampp/htdocs/IS_Biblioteka/prisijungimas.php</file>
+            <file>file:/C:/xampp/htdocs/IS_Biblioteka/Klientu_modulis/skaitytojuAtaskaita.php</file>
             <file>file:/C:/xampp/htdocs/IS_Biblioteka/Darbuotoju_modulis/skirtiAtlyginima.php</file>
+            <file>file:/C:/xampp/htdocs/IS_Biblioteka/Procesai/atsijungti.php</file>
             <file>file:/C:/xampp/htdocs/IS_Biblioteka/Darbuotoju_modulis/redagavimasDarbuotojo.php</file>
+            <file>file:/C:/xampp/htdocs/IS_Biblioteka/Procesai/redaguotiPaskyrą.php</file>
+            <file>file:/C:/xampp/htdocs/IS_Biblioteka/ataskaituSarasas.php</file>
+            <file>file:/C:/xampp/htdocs/IS_Biblioteka/Procesai/prisijungti.php</file>
+            <file>file:/C:/xampp/htdocs/IS_Biblioteka/Darbuotoju_modulis/registracijaDarbuotojo.php</file>
+            <file>file:/C:/xampp/htdocs/IS_Biblioteka/Klientu_modulis/skirtiRenginioLengvata.php</file>
+            <file>file:/C:/xampp/htdocs/IS_Biblioteka/turimiTaskai.php</file>
+            <file>file:/C:/xampp/htdocs/IS_Biblioteka/Darbuotoju_modulis/atostoguForma.php</file>
+            <file>file:/C:/xampp/htdocs/IS_Biblioteka/Darbuotoju_modulis/atlyginimoForma.php</file>
+            <file>file:/C:/xampp/htdocs/IS_Biblioteka/Darbuotoju_modulis/darbuotojoRegistravimas.php</file>
+            <file>file:/C:/xampp/htdocs/IS_Biblioteka/Darbuotoju_modulis/atlyginimuSarasasShort.php</file>
+            <file>file:/C:/xampp/htdocs/IS_Biblioteka/Darbuotoju_modulis/atnaujintiAtostogas.php</file>
             <file>file:/C:/xampp/htdocs/IS_Biblioteka/Knygu_modulis/egzemplioriausKurimas.php</file>
             <file>file:/C:/xampp/htdocs/IS_Biblioteka/Darbuotoju_modulis/keistiStatusa.php</file>
-            <file>file:/C:/xampp/htdocs/IS_Biblioteka/Darbuotoju_modulis/registracijaDarbuotojo.php</file>
             <file>file:/C:/xampp/htdocs/IS_Biblioteka/nustatymai.php</file>
+            <file>file:/C:/xampp/htdocs/IS_Biblioteka/Klientu_modulis/skirtiSkolosLengvata.php</file>
         </group>
     </open-files>
 </project-private>

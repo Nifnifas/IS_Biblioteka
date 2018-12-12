@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("nustatymai.php");
+include("../nustatymai.php");
 
 $db = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME1);
 mysqli_set_charset($db, "utf8");
@@ -21,28 +21,41 @@ mysqli_set_charset($db, "utf8");
         <h1>Bibliotekos informacinė sistema</h1>
         <table border="1" cellpadding="10">
             <tr align="center">
-                <td>Turimi taškai:</td>
-
+                
 <?php
 $user_id = $_SESSION['userId'];
 $klientoID = "SELECT * FROM is_vartotojas WHERE id=$user_id";
 $result = mysqli_query($db, $klientoID);
 $row = $result->fetch_assoc();
 $id = $row["kliento_id"];
+
 $query = "SELECT * FROM klientas WHERE id=$id";
 $result = mysqli_query($db, $query);
 $row = $result->fetch_assoc();
 $taskai = $row["Taskai"];
-echo "<td>" . $taskai . " </td>";
-?>                
+$kaina = 3;
+if ($taskai >= $kaina)
+{
+$likeTaskai=$taskai-$kaina;
+$query = "INSERT INTO lengvata VALUES (null, $kaina, '2', $id)";
+$result = mysqli_query($db, $query);
+$query = "UPDATE klientas SET Taskai='$likeTaskai' WHERE id=$id";
+$result = mysqli_query($db, $query);
+echo "<td>Jums buvo suteikta renginio lengvata</td>";
+}
+else 
+{
+    echo "<td>Jums nepakanka taškų</td>";
+}
+?>
                 
             </tr>
         </table>
         <br>
         <div class="container" style="background-color:#f1f1f1">
-            <button onclick="javascript:history.back()">Grįžti</button>
+            <button onclick="javascript:history.back()">Grįžti į pradžią</button>
         </div>
-        </form>     
+        </form>
     </center>
 </body>
 

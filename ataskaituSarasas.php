@@ -11,7 +11,10 @@
         <h1>Bibliotekos informacinė sistema</h1>
         <table border="1" cellpadding="10">
             <tr align="center">
-                <td>Čia bus galima matyti ataskaitų sąrašą</td>
+                <td><a href="/is_biblioteka/darbuotojuAtaskaita.php">Darbuotojų ataskaita</td>
+                <td><a href="/is_biblioteka/Klientu_modulis/skaitytojuAtaskaita.php">Skaitytojų ataskaita</td>
+                <td><a href="/is_biblioteka/renginiuAtaskaita.php">Renginių ataskaita</td>
+                <td><a href="/is_biblioteka/knyguAtaskaita.php">Knygų ataskaita</td>
             <tr><td><a href="suvestiAtaskaitosDuomenis.php">Išplėstinė ataskaita</a></td></tr>
             </tr>
         </table>
