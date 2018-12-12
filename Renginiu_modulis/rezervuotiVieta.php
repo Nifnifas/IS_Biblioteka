@@ -9,10 +9,10 @@
     <a href="/is_biblioteka/turimiTaskai.php">Turimi taškai</a><br/>
     <center>
         <h1>Bibliotekos informacinė sistema</h1>
-            Rezervacijos atšaukimas
+            Vietos rezervacija
         <br>
         <div class="container" style="background-color:#f1f1f1">
-                <button onclick="javascript:history.back()">Grįžti</button>
+            <button onclick="javascript:history.back()">Grįžti</button>
         </div>
     </center>
 </body>

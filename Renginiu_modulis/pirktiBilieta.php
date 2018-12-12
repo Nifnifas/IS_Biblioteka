@@ -11,8 +11,10 @@
         <h1>Bibliotekos informacinė sistema</h1>
             Bilieto įsigijimas
         <br>
+            Bilietą galite grąžinti, jeigu iki renginio liko bent 5 dienos.
+        <br>
         <div class="container" style="background-color:#f1f1f1">
-            <button onclick="javascript:history.back()">Grįžti į pradžią</button>
+            <button onclick="javascript:history.back()">Grįžti</button>
         </div>
     </center>
 </body>

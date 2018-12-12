@@ -23,6 +23,7 @@
   $tel_nr = $_POST['tel_nr'];
   $adresas = $_POST['adresas'];
   $data = $_POST['data'];
+  $vartotojas = $_POST['vartotojas'];
   
     // Create connection
     $conn = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
@@ -30,33 +31,52 @@
     if (!$conn) {
         die("Connection failed: " . mysqli_connect_error());
     }
+        $sql_u = "SELECT * FROM " . TBL_DARBUOTOJAS . " WHERE asmens_kodas='$asmens_kodas'";
+  	$sql_e = "SELECT * FROM " . TBL_DARBUOTOJAS . " WHERE el_pastas='$el_pastas'";
+  	$res_u = mysqli_query($conn, $sql_u);
+  	$res_e = mysqli_query($conn, $sql_e);
 
-    $sql = "INSERT INTO " . TBL_DARBUOTOJAS . " (
-            vardas, 
-            pavarde, 
-            tel_nr, 
-            adresas,
-            isidarbinimo_data,
-            asmens_kodas,
-            el_pastas
-        )
-        VALUES (
-            '$vardas',
-                '$pavarde',
-                    '$tel_nr',
-                        '$adresas',
-                            '$data',
-                                '$asmens_kodas',
-                                    '$el_pastas'
+  	if (mysqli_num_rows($res_u) > 0) {
+  	  echo "Toks asmens kodas jau yra užregistruotas!"; 	
+          header( "refresh:2;url=darbuotojoRegistravimas.php");
+  	}else if(mysqli_num_rows($res_e) > 0){
+  	  echo "Toks el. paštas jau yra užregistruotas!"; 	
+          header( "refresh:2;url=darbuotojoRegistravimas.php");
+  	}else{
+            $query = "INSERT INTO " . TBL_DARBUOTOJAS . " (
+                    vardas, 
+                    pavarde, 
+                    tel_nr, 
+                    adresas,
+                    isidarbinimo_data,
+                    asmens_kodas,
+                    el_pastas
+                )
+                VALUES (
+                    '$vardas',
+                        '$pavarde',
+                            '$tel_nr',
+                                '$adresas',
+                                    '$data',
+                                        '$asmens_kodas',
+                                            '$el_pastas'
 
-            )";
+                    )";
+            if (mysqli_query($conn, $query)) {
+                $get = "SELECT id FROM " . TBL_DARBUOTOJAS . " WHERE `asmens_kodas` = '$asmens_kodas'";
+                $res_get = $res_u = mysqli_query($conn, $get);
+                $row = $res_get->fetch_assoc();
+                $sec = "UPDATE " . TBL_VARTOTOJAI . " SET `darbuotojo_id`= '$row[id]'"
+                . " WHERE `id` = '$vartotojas'";
+                mysqli_query($conn, $sec);
+                 echo "<table border=\"1\" cellpadding=\"10\"><tr align=\"center\"><td>Darbuotojas sėkmingai užregistruotas!</td></tr></table>";
+                header( "refresh:1;url=darbuotojuSarasas.php");
+            } else {
+                echo "Klaida: " . $query . "<br>" . mysqli_error($conn);
+            }   
+        }
 
-    if (mysqli_query($conn, $sql)) {
-        echo "<table border=\"1\" cellpadding=\"10\"><tr align=\"center\"><td>Darbuotojas sėkmingai užregistruotas!</td></tr></table>";
-        header( "refresh:1;url=darbuotojuSarasas.php");
-    } else {
-        echo "Klaida: " . $sql . "<br>" . mysqli_error($conn);
-    }
+    
 
     mysqli_close($conn);
 ?>

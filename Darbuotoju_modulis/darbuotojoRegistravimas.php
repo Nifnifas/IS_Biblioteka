@@ -38,6 +38,32 @@
             <label for="el_pastas"><b>El. paštas</b></label>
             <input type="email" name="el_pastas" pattern=".{3,30}" required title="">
             <br>
+            <label for="vartotojas"><b>Priskirti vartotoją</b></label>
+            <select name="vartotojas" required="">
+            <?php
+                include("../nustatymai.php");
+                // Create connection
+                $conn = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
+                // Check connection
+                if (!$conn) {
+                    die("Connection failed: " . mysqli_connect_error());
+                }
+                    $sql_u = "SELECT id, vardas, darbuotojo_id FROM " . TBL_VARTOTOJAI;
+                    $res_u = mysqli_query($conn, $sql_u);
+						$teams = $res_u;
+                                                echo "<option value=\"\">";
+						foreach($teams as $key => $val) {
+							$selected = "";
+							if(isset($data['id']) && $data['id'] == $val['id']) {
+								$selected = " selected='selected'";
+							}
+                                                        if(is_null($val['darbuotojo_id'])){
+                                                            echo "<option{$selected} value='{$val['id']}'>{$val['vardas']}</option>";
+                                                        }
+						}
+					?>
+            </select>
+            <br>
             <?php
                 $today = date("Y-m-d");
                 $minDate = date('Y-m-d', strtotime($today. ' - 7 days'));
@@ -53,7 +79,7 @@
         </form>   
                 <br>
         <div class="container" style="background-color:#f1f1f1">
-            <button onclick="javascript:history.back()">Grįžti</button>
+            <a href="/is_biblioteka/Darbuotoju_modulis/darbuotojuSarasas.php">Grįžti</a><br/>
         </div>
     </center>
 </body>
