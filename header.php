@@ -10,11 +10,16 @@
 	<title>Bibliotekos informacinė sistema</title>
 </head>
 <body>
-	<right>
-	<a href="/is_biblioteka/atsijungimas.php">Atsijungti</a><br/>
-    <a href="/is_biblioteka/paskyrosRedagavimas.php">Redaguoti paskyrą</a><br/>
-    <a href="/is_biblioteka/turimiTaskai.php">Turimi taškai</a><br/>
-</right>
+	<body>
+    <?php if (isset($_SESSION['userId'])) { ?>
+    <a href="../Procesai/atsijungti.php">Atsijungti</a><br/>
+    <a href="../paskyrosRedagavimas.php">Redaguoti paskyrą</a><br/>
+    <?php  if ($_SESSION['userLevel'] == 1) { ?>
+    <a href="../turimiTaskai.php">Turimi taškai</a><br/>
+<?php }} else {?>
+    <a href="../prisijungimas.php">Prisijungti</a><br/>
+    <a href="../registracija.php">Registruotis</a><br/>
+<?php } ?>
     <center>
         <h1>Bibliotekos informacinė sistema</h1>
     </center>

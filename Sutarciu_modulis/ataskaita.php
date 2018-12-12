@@ -6,10 +6,9 @@
 
 <center>
     <h2>Sutarčių ataskaita</h2>
-</center>
 
+    
 
-<center>
     <div class="container" style="background-color:#f1f1f1">
         <form action="../index.php">
             <button type="submit">Grįžti</button>

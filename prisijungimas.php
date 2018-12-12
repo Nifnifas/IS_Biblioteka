@@ -26,9 +26,6 @@
     <form action="index.php">
        <button type="submit">Grįžti</button>
     </form>
-    <form action="registracija.php">
-       <button type="submit">Registruotis</button>
-    </form>
   </div>
 
     </body>
