@@ -2,7 +2,7 @@
     require('./../Procesai/dbConnect.php');
     require('./../header.php');
 
-    $userId = 1; //TODO: get zie user id from $_SESSION ! ! !
+    $userId = $_SESSION['userId'];
     $query = "  SELECT `skola`.`Dydis`, `skola`.`Procentalumas`, DATE_ADD(`sutartis`.`Isdavimo_data`, INTERVAL `sutartis`.`Terminas` DAY) AS `pradzia` 
                 FROM `skola`, `sutartis` 
                 WHERE `skola`.`fk_SutartisID` = `sutartis`.`Sutarties_Nr` AND `sutartis`.`fk_KlientasID` = '$userId' AND `skola`.`Grazinimo_data` IS NULL

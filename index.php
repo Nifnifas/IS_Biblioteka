@@ -1,5 +1,5 @@
 <?php
-session_start();
+require('Sutarciu_modulis/Procesai/skaiciuotiSkolas.php');
 ?>
 <html>
 <head>
@@ -35,6 +35,9 @@ session_start();
             </tr>
         </table>
     </center>
+    <form method="post" action="Sutarciu_modulis/Procesai/rezervuoti.php?book=2">
+        <button type="submit" name="register-submit">teip!</button>
+    </form>
 </body>
 
 </html>

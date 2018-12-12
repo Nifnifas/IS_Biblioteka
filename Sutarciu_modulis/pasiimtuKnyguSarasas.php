@@ -2,7 +2,7 @@
     require('./../Procesai/dbConnect.php');
     require('./../header.php');
 
-    $userId = 1; //TODO: get zie user id from $_SESSION ! ! !
+    $userId = $_SESSION['userId'];
     $query = "  SELECT `kurinys`.`Pavadinimas`, `kurinys`.`Autorius`, `sutartis`.`Sutarties_Nr`, `sutartis`.`Grazinimo_data`, `egzempliorius`.`id`
                 FROM `kurinys`, `sutartis`, `egzempliorius`, `sutartis_egzempliorius` 
                 WHERE `sutartis`.`Sutarties_Nr` = `sutartis_egzempliorius`.`fk_SutartisID` 
