@@ -4,7 +4,11 @@ include("../nustatymai.php");
 include("../sablonai.php");
 
 // tik klientams
-$user_id = 1; // prisijungus, cia turetu buti user id
+if ($_SESSION['userLevel'] != 1){
+	header("Location: knyguSarasas.php");
+	die();
+}
+$user_id = $_SESSION['userId'];
 
 $db = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
 mysqli_set_charset($db, "utf8");

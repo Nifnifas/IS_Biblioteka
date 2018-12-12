@@ -15,7 +15,7 @@ navbar_inside();
 
 echo "<div class='container'>";
 
-if (true) // tik darbuotojams
+if ($_SESSION['userLevel'] == 2) // tik darbuotojams
 	echo "<a href='knygosKurimas.php'>Naujas kūrinys</a><br/>";
 
 echo "<center><h2>Knygų sąrašas</h2></center>";

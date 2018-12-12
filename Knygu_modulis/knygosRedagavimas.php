@@ -4,6 +4,10 @@ include("../nustatymai.php");
 include("../sablonai.php");
 
 // tik darbuotojams
+if ($_SESSION['userLevel'] != 2){
+	header("Location: knyguSarasas.php");
+	die();
+}
 
 $db = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
 mysqli_set_charset($db, "utf8");

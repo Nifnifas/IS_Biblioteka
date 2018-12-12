@@ -3,6 +3,10 @@ session_start();
 include("../nustatymai.php");
 
 // tik darbuotojams
+if ($_SESSION['userLevel'] != 2){
+	header("Location: knyguSarasas.php");
+	die();
+}
 
 $db = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
 
